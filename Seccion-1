@@ -9,7 +9,7 @@ R/= Empiezo por decir que la cosistencia fuerte  es diferente a la != Consistenc
 
 Para dar respuesta quiero tomar como ejemplo un entorno real basado en el motociclismo de competencia.
 
-Consistencia Eventual
+Consistencia Eventual:
 
 la consistencia eventual sería como permitir que cada parte de la moto reporte a su propio ritmo, lo cual es útil para análisis de datos a gran escala en tiempos diferentes de inserción de datos. 
 
@@ -20,17 +20,17 @@ Conclusión: se consolidan todos los datos por cada sensor en la base de datos, 
 todos los datos son almacenados y al final pueden ser consultados en conjunto.
 
 
-Consistencia Fuerte
+Consistencia Fuerte:
 La consistencia fuerte, en cambio, es esencial en situaciones de alta presión donde la exactitud y sincronización inmediata de la información son cruciales, como en decisiones tácticas durante la carrera
 
 Con lo anterior podemos complementar que todos los sensores en la moto envían datos en tiempo real que deben estar sincronizados y ser consistentes al momento de llegar al equipo técnico. Esto es crucial en situaciones donde cada segundo cuenta, como ajustar la estrategia de la carrera basándose en la temperatura exacta del motor en tiempo real. 
 cada dato debe ser confirmado y sincronizado antes de ser utilizado, asegurando que cualquier información que vea el equipo sea la versión más actualizada y precisa.
 
+Ventajas y desventajas de ambas:
 
+Consistencia eventual: es más flexible y eficiente en situaciones donde los datos pueden tolerar pequeñas inconsistencias temporales, ideal para análisis  despues de terminada una carrera para toma de desiciones con datos consolidadas.
 
-
-
-
+Consistencia fuerte: es la mejor opción cuando se necesita precisión absoluta y sincronización en tiempo real, aunque implique un sacrificio en velocidad y escalabilidad.
 
 
 
