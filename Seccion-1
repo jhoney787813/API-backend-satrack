@@ -44,8 +44,26 @@ Compare Raft con Paxos en términos de complejidad y casos
 de uso.
 
 
+R/= El diseño de sistemas distribuidos el consenso es una característica que prevalece en la implementación de algorirmos que permitan la obtención de respuestas agiles sobre algun servicio.
+
+Quisiera proponer en un entorno de la vida cotidiana como lo es el mundo de los videjuegos la explicación en este contexto.
+
+tenemos un juego en línea multijugador donde los jugadores deben colaborar y tomar decisiones conjuntas, como en un juego de estrategia (Construye tu imperio) en tiempo real.
+ ¿que necesita para hacer esta toma de disiciones posible?, se necesita implementar un metodo capaz de orqueztar las decisicones de todos los jugadores es aqui donde el protocolo Raft busca asignar papapel como el lider del equipo (Capitan)
+a todos los jugagores conectados denominados (Nodos del sistema), cuando Raft ha elegido el "capitan"  pone a disposición las votaciones de los otros jugadores(Nodos del sistema) pero asegura que el "capitan" tenga la ultima palabra en la toma de desiciones y sincroniza la decición con todos los jugadores.
+
+¿Cómo Raft Garantiza Seguridad y Disponibilidad?
+
+Raft empieza eligiendo un líder entre los nodos (los jugadores). asigna el rol de "capitan" quien es el que toma las decisiones.
+
+Cada vez que se toma una decisión (como mover tropas o recolectar recursos), por el  "Capitan" (nodo central)   Raft  sincroniza la comunica a los demás, quienes registran esta decisión para que todos tengan el mismo plan de juego.
+
+Ahora si el "capitan" pierde conexión entonces el algorirmo de "consenso" que implementa Raft, busca entre los otros jugadores de la partida (Nodos del sistema) quien asumira el rol de "capitan" y le cargara las configuraciones y desciones previas tomadas, no acepta  jugadores (Nodos del sistema) que no han sido validados inicial mente.
+
+la disponibilidad se garantiza ya que esta validando los recustos y la cantidad de jugadores conectados para sincronizar las deciciones y en caso de desconexión de algun jugador(Nodo del sistema)  se asigna un nuevo "capitan".
 
 
+¿Cuando se implementa Paxos ?
 
 
 
