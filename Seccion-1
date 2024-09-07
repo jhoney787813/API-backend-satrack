@@ -63,9 +63,15 @@ Ahora si el "capitan" pierde conexión entonces el algorirmo de "consenso" que i
 la disponibilidad se garantiza ya que esta validando los recustos y la cantidad de jugadores conectados para sincronizar las deciciones y en caso de desconexión de algun jugador(Nodo del sistema)  se asigna un nuevo "capitan".
 
 
-¿Cuando se implementa Paxos ?
+Paxos VS Raft
 
+para el caso particular del juego de estrategia que hemos denominado (Construye tu imperio), paxos no seria lo mas adecuado y te voy a explicar por que apesar de ser tambien un protocolo de consenso utilizado en sistemas distribuidos tambien tiene sus escenarios propios de apliación.
 
+Complejidad Alta: Paxos es más complejo que Raft y requiere múltiples rondas de consenso para tomar decisiones. En un juego en tiempo real, esta complejidad puede introducir latencias ya que esta son deando mas veces los (nodos del sistema) para obtener respuestas, retrasando las acciones de los jugadores y afectando la fluidez del juego.
+
+Menor Agilidad en Decisiones: A diferencia de Raft, donde un "Capitán"( nodo principal)  toma decisiones rápidamente, en Paxos cada nodo (jugador) puede proponer una acción, y todos deben ponerse de acuerdo. Esto podría resultar en decisiones más lentas y descoordinadas, lo que no es ideal en un juego de estrategia rápida.
+
+Dificultad de Implementación: Implementar Paxos en un entorno de videojuegos es más complicado debido a la necesidad de gestionar múltiples propuestas simultáneas, lo que aumenta el riesgo de errores y complicaciones técnicas.
 
 -----------------------------------------------------------------------
 Pregunta 3
