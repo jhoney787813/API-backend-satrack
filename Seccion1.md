@@ -19,7 +19,7 @@ Estos datos se envían a una base de datos, pero no todos los sensores están si
 Conclusión: se consolidan todos los datos por cada sensor en la base de datos, pero no en un mismo tiempo ni en una misma transacción.puede no estar completamente sincronizada. A pesar de esta inconsistencia temporal (eventualmente),
 todos los datos son almacenados y al final pueden ser consultados en conjunto.
 
-![image](https://github.com/user-attachments/assets/acbd183f-df2c-48ca-bfc4-5f2b988bbf6a)
+
 
 Consistencia Fuerte:
 La consistencia fuerte, en cambio, es esencial en situaciones de alta presión donde la exactitud y sincronización inmediata de la información son cruciales, como en decisiones tácticas durante la carrera
@@ -63,7 +63,7 @@ Ahora si el "capitan" pierde conexión entonces el algorirmo de "consenso" que i
 
 la disponibilidad se garantiza ya que esta validando los recustos y la cantidad de jugadores conectados para sincronizar las deciciones y en caso de desconexión de algun jugador(Nodo del sistema)  se asigna un nuevo "capitan".
 
-
+![image](https://github.com/user-attachments/assets/acbd183f-df2c-48ca-bfc4-5f2b988bbf6a)
 Paxos VS Raft
 
 para el caso particular del juego de estrategia que hemos denominado (Construye tu imperio), paxos no seria lo mas adecuado y te voy a explicar por que apesar de ser tambien un protocolo de consenso utilizado en sistemas distribuidos tambien tiene sus escenarios propios de apliación.
