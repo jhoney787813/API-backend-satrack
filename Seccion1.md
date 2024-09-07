@@ -19,6 +19,7 @@ Estos datos se envían a una base de datos, pero no todos los sensores están si
 Conclusión: se consolidan todos los datos por cada sensor en la base de datos, pero no en un mismo tiempo ni en una misma transacción.puede no estar completamente sincronizada. A pesar de esta inconsistencia temporal (eventualmente),
 todos los datos son almacenados y al final pueden ser consultados en conjunto.
 
+![image](https://github.com/user-attachments/assets/acbd183f-df2c-48ca-bfc4-5f2b988bbf6a)
 
 Consistencia Fuerte:
 La consistencia fuerte, en cambio, es esencial en situaciones de alta presión donde la exactitud y sincronización inmediata de la información son cruciales, como en decisiones tácticas durante la carrera
