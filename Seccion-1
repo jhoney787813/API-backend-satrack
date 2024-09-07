@@ -1,1 +1,44 @@
+Pregunta 1
 
+Explique el principio de consistencia eventual en bases de
+datos distribuidas. Compare este enfoque con el de
+consistencia fuerte y discuta sus ventajas y desventajas en el
+contexto de aplicaciones de gran escala.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+
+Pregunta 2
+
+Describa el protocolo de consenso Raft. ¿Cómo garantiza Raft
+la seguridad y la disponibilidad en un sistema distribuido?
+Compare Raft con Paxos en términos de complejidad y casos
+de uso.
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+Pregunta 3
+
+Discuta las diferencias entre el escalado vertical y el escalado
+horizontal en sistemas backend. Proporcione ejemplos
+específicos de cuándo utilizaría cada enfoque y cómo afectaría
+esto la arquitectura del sistema.
