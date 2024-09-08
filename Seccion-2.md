@@ -1,17 +1,19 @@
 
 Pregunta 1
+
 Dado el siguiente esquema de base de datos para una
 aplicación de red social:
 Usuarios (id, nombre, email, contraseña)
 Publicaciones (id, usuario_id, contenido, fecha_publicacion)
 Amigos (id, usuario_id1, usuario_id2, fecha_amistad)
 Escriba una consulta SQL para obtener las publicaciones de
-los amigos de un usuario específico (por ejemplo, usuario_id =
-1) realizadas en la última semana.
+los amigos de un usuario específico (por ejemplo, usuario_id =1)
+realizadas en la última semana.
 
 
 ____________________________________________________________
 Pregunta 2
+
 Implemente una API RESTful en Node.js utilizando Express que
 permita a los usuarios registrarse, iniciar sesión y publicar
 mensajes. Las rutas requeridas son:
@@ -26,6 +28,7 @@ unitarias para cada endpoint.
 ____________________________________________________________
 
 Pregunta 3
+
 Se ha detectado que una de las consultas más utilizadas en
 una base de datos PostgreSQL está causando tiempos de
 respuesta muy lentos. Describa el proceso que seguiría para
