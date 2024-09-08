@@ -106,7 +106,7 @@ insert
                 (4, 5, NOW() - INTERVAL 1 MONTH),  
                 (6, 7, NOW() - INTERVAL 1 YEAR),   
                 (8, 9, NOW() - INTERVAL 4 MONTH), 
-                (10, 1, NOW() - INTERVAL 100 DAY); -
+                (10, 1, NOW() - INTERVAL 100 DAY); 
 
 ____________________________________________________________
 Pregunta 2
