@@ -82,10 +82,15 @@ horizontal en sistemas backend. Proporcione ejemplos
 específicos de cuándo utilizaría cada enfoque y cómo afectaría
 esto la arquitectura del sistema.
 
-R/= Su pongamos que tenemos un restaurante con renombre y muy visitado con (Alta concurrencia), el espacio donde se sientan los clientes es amplio y con una capacidad para "100" personoas a la vez, sin emgargo la cocina solo tiene capacidad para
-personal suficiente como para preparar 25 platos a la vez.
+R/= Tenemos un restaurante con renombre y muy visitado con (Alta concurrencia), el espacio donde se sientan los clientes es amplio y con una capacidad para "100" personas a la vez, sin emgargo la cocina solo tiene capacidad para
+personal y recursos suficientes como para preparar 25 platos a la vez.
 
+¿que se puede hacer para preparas los 100 platos a la vez?
 
+Es aqui como podemos aplicar el escalado vertical: que implica hacer una remodelación sobre la cocina  para amplicar su espacio, adicionando mas herramientas, enseres ,y/o personal. aprovechando la capacidad maxima de la concina. sin tener que
+cambiar a un local nuevo o locación diferente del resurante. pero puede existir el riesgo que llegas un punto en que no puedes meter más cosas ni personas con la nueva ampliación de la cocina sin que se vuelva un caos.  la eficiencia se reduce porque los cocineros empiezan a estorbarse entre sí y los costos aumentan. 
+
+ la cacapidad del restaurante es 100 personas a la vez y el dueño quiere atentder a 400 personas el simultaneo ¿
 
 
 
