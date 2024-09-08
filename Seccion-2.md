@@ -138,7 +138,7 @@ Resultados de nuestro ejemplo:
 
 ![image](https://github.com/user-attachments/assets/83747342-f868-42a2-8289-8a8b7b9767ed)
 
-Conclusión: para nuestro caso ya que no se especifica una necesidad a suplir mas alla del requerimiento inicial de consultar por rangos de una semana las ultimas publicaciones, vemos que las consultas que se hacen no tienen variación de resultados y los tiempos de respuesta son parecedidos, esto puede variar si se utiliza esponencial mente la tabla a nivel de transacciones para las "Publicaciones", por lo que yo aconejaria utilizar ejemplo incial de aislar las transacciones en este caso las consultas con "SESSION TRANSACTION ISOLATION " si se utiliza my sql o para sql server utilizar "with nolock" en las consultas donde se requiera evitar bloqueos.
+Conclusión: para nuestro caso ya que no se especifica una necesidad a suplir mas alla del requerimiento inicial de consultar por rangos de una semana las ultimas publicaciones, vemos que las consultas que se hacen no tienen variación de resultados y los tiempos de respuesta son parecedidos, esto puede variar si se utiliza exponencialmente la tabla a nivel de transacciones para las "Publicaciones", por lo que yo aconejaria utilizar ejemplo incial de aislar las transacciones en este caso las consultas con "SESSION TRANSACTION ISOLATION " si se utiliza my sql o para sql server utilizar "with nolock" en las consultas donde se requiera evitar bloqueos.
 ____________________________________________________________
 Pregunta 2
 
