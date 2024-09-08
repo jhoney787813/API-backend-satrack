@@ -169,9 +169,15 @@ Mejora la legibilidad y la comprensión del código. yo he querido plasmar con e
 
 Una vez corriendo el proyeto con el comando "npm start" abre tu navegador y ingresa  http://localhost:5000/api-docs para ver la documentación con swagger que se adiciono.
 
-![image](https://github.com/user-attachments/assets/d3b78738-4f69-4b25-bff8-41900a05c59b)
+Implementación de SWAGGER
+
+![image](https://github.com/user-attachments/assets/f1bc85b7-ff64-40bc-b25c-dd8148c8bfe3)
+
+
 
 Con la siguiente estructura doy cumplimiento 
+
+![image](https://github.com/user-attachments/assets/d3b78738-4f69-4b25-bff8-41900a05c59b)
 
             api-nodejs-supabase-satrack/
             ├── src/
@@ -194,6 +200,11 @@ Con la siguiente estructura doy cumplimiento
             │   └── app.js  -> Configuraciones y puntos de entrada principales poder usar el api con express.
             ├── .env   -> Archivo para almacenar variables de entorno, como las claves API de Supabase y otras configuraciones sensibles. (este archivo es el que permite realizar la conexión con los tokets que provee el servicio en la nube   SUPABASE.
             └── package.json
+
+
+
+
+
 
 Contenido de archivos
 ![image](https://github.com/user-attachments/assets/f4849525-9b4b-43ba-a556-94763de682e8)
