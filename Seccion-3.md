@@ -32,7 +32,7 @@ ahora  ¿como podemos manejar la estrategia de deprecación?
 
 definir la fecha limite maximo que los clientes tendran disponibles el soporte de versiones ante errores. 
 
-te niendo las nuevas versiones funcionales y las actuales operativas, se puede generar  un comunicado a nivel interno de la organización informando la deprecación de los enpoint actuales y pasar el listado con los cambios y la forma de consumir los nuevos endpoints.
+teniendo las nuevas versiones funcionales y las actuales operativas, se puede generar  un comunicado a nivel interno de la organización informando la deprecación de los enpoint actuales y pasar el listado con los cambios y la forma de consumir los nuevos endpoints.
 
 ahora, si por el contrario no es posible que los clientes se migren a la nueva versión debido a el impacto que tendria en implementar el cambio del DNS o rutas de las apis, se podria considerar implementar en los endpoints a deprecar una redirección temporal de recursos hacia los nuevos endpoint, pero se debe analizar si los contratos de entrada de las peticiones de los endpoints viejos son aplicables o soportados por las nuevas versiones para hacer esta redirección. de no ser asi se deberia de rechazar las peticiones entrantes a los endpoints viejos e informar mediante status responce el codigo y mensaje apropiado para informar que el endpoint o api se ha deprecado.
 
