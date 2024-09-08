@@ -43,70 +43,70 @@ Para verifica el resultado de las cosultas podemos utilizar esta pagina: (https:
 
 Script de tablas
 
-CREATE TABLE Usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,      
-    nombre VARCHAR(100) NOT NULL,           
-    email VARCHAR(255) NOT NULL UNIQUE,    
-    contraseña VARCHAR(255) NOT NULL        
-);
+                CREATE TABLE Usuarios (
+                    id INT AUTO_INCREMENT PRIMARY KEY,      
+                    nombre VARCHAR(100) NOT NULL,           
+                    email VARCHAR(255) NOT NULL UNIQUE,    
+                    contraseña VARCHAR(255) NOT NULL        
+                );
 
-CREATE TABLE Publicaciones (
-    id INT AUTO_INCREMENT PRIMARY KEY,        
-    usuario_id INT NOT NULL,                
-    contenido TEXT NOT NULL,               
-    fecha_publicacion DATETIME NOT NULL,     
-    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id) 
-);
+                CREATE TABLE Publicaciones (
+                    id INT AUTO_INCREMENT PRIMARY KEY,        
+                    usuario_id INT NOT NULL,                
+                    contenido TEXT NOT NULL,               
+                    fecha_publicacion DATETIME NOT NULL,     
+                    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id) 
+                );
 
-CREATE TABLE Amigos (
-    id INT AUTO_INCREMENT PRIMARY KEY,       
-    usuario_id1 INT NOT NULL,                
-    usuario_id2 INT NOT NULL,              
-    fecha_amistad DATETIME NOT NULL,         
-    FOREIGN KEY (usuario_id1) REFERENCES Usuarios(id),
-    FOREIGN KEY (usuario_id2) REFERENCES Usuarios(id)  
-);
+                CREATE TABLE Amigos (
+                    id INT AUTO_INCREMENT PRIMARY KEY,       
+                    usuario_id1 INT NOT NULL,                
+                    usuario_id2 INT NOT NULL,              
+                    fecha_amistad DATETIME NOT NULL,         
+                    FOREIGN KEY (usuario_id1) REFERENCES Usuarios(id),
+                    FOREIGN KEY (usuario_id2) REFERENCES Usuarios(id)  
+                );
 
 insert
 
-INSERT INTO Usuarios (nombre, email, contraseña)
-VALUES 
-('Alex', 'alex@satrack.es', 'Alexpassword123'),
-('Wilmar', 'Wilmar@satrack.es', 'WilmarPass1'),
-('Carlos', 'carlos@satrack.es', 'carlosPass2'),
-('Ana', 'ana@satrack.es', 'anaPass3'),
-('Yulieth', 'Yulieth@satrack.es', 'YuliethPass4'),
-('Pampis', 'Pampis@satrack.es', 'PampisPass5'),
-('el primo', 'primo@satrack.es', 'primoPass6'),
-('Edy', 'Edy@satrack.es', 'EdyPass7'),
-('Sebastian', 'Sebastian@satrack.es', 'SebastianPass8'),
-('andres', 'andres@satrack.es'', 'andresPass9');
+                        INSERT INTO Usuarios (nombre, email, contraseña)
+                        VALUES 
+                        ('Alex', 'alex@satrack.es', 'Alexpassword123'),
+                        ('Wilmar', 'Wilmar@satrack.es', 'WilmarPass1'),
+                        ('Carlos', 'carlos@satrack.es', 'carlosPass2'),
+                        ('Ana', 'ana@satrack.es', 'anaPass3'),
+                        ('Yulieth', 'Yulieth@satrack.es', 'YuliethPass4'),
+                        ('Pampis', 'Pampis@satrack.es', 'PampisPass5'),
+                        ('el primo', 'primo@satrack.es', 'primoPass6'),
+                        ('Edy', 'Edy@satrack.es', 'EdyPass7'),
+                        ('Sebastian', 'Sebastian@satrack.es', 'SebastianPass8'),
+                        ('andres', 'andres@satrack.es'', 'andresPass9');
+                
+                INSERT INTO Publicaciones (usuario_id, contenido, fecha_publicacion)
+                VALUES
+                (2, '¡Qué día tan bonito hoy en el parque!', NOW() - INTERVAL 3 DAY),
+                (3, 'Estoy empezando un nuevo libro, ¡me encanta!', NOW() - INTERVAL 10 DAY),
+                (4, 'Cocinando una receta nueva, ¡deliciosa!', NOW() - INTERVAL 2 DAY), 
+                (5, 'Entrenamiento matutino completado.', NOW() - INTERVAL 7 DAY),  
+                (6, 'Amo los días de lluvia y un buen café.', NOW() - INTERVAL 1 DAY), 
+                (7, 'Preparándome para mi próximo viaje.', NOW() - INTERVAL 15 DAY), 
+                (8, 'Hoy aprendí algo nuevo sobre SQL Server.', NOW() - INTERVAL 6 DAY), 
+                (9, 'Disfrutando de un buen libro y una copa de vino.', NOW() - INTERVAL 5 DAY), 
+                (10, 'Gran noche con amigos.', NOW() - INTERVAL 4 DAY), 
+                (1, 'Día de descanso total.', NOW() - INTERVAL 8 DAY); 
 
-INSERT INTO Publicaciones (usuario_id, contenido, fecha_publicacion)
-VALUES
-(2, '¡Qué día tan bonito hoy en el parque!', NOW() - INTERVAL 3 DAY),
-(3, 'Estoy empezando un nuevo libro, ¡me encanta!', NOW() - INTERVAL 10 DAY),
-(4, 'Cocinando una receta nueva, ¡deliciosa!', NOW() - INTERVAL 2 DAY), 
-(5, 'Entrenamiento matutino completado.', NOW() - INTERVAL 7 DAY),  
-(6, 'Amo los días de lluvia y un buen café.', NOW() - INTERVAL 1 DAY), 
-(7, 'Preparándome para mi próximo viaje.', NOW() - INTERVAL 15 DAY), 
-(8, 'Hoy aprendí algo nuevo sobre SQL Server.', NOW() - INTERVAL 6 DAY), 
-(9, 'Disfrutando de un buen libro y una copa de vino.', NOW() - INTERVAL 5 DAY), 
-(10, 'Gran noche con amigos.', NOW() - INTERVAL 4 DAY), 
-(1, 'Día de descanso total.', NOW() - INTERVAL 8 DAY); 
-
-INSERT INTO Amigos (usuario_id1, usuario_id2, fecha_amistad)
-VALUES
-(1, 2, NOW() - INTERVAL 1 YEAR), 
-(1, 3, NOW() - INTERVAL 6 MONTH), 
-(1, 4, NOW() - INTERVAL 3 MONTH), 
-(1, 5, NOW() - INTERVAL 1 MONTH),  
-(1, 6, NOW() - INTERVAL 20 DAY),   
-(2, 3, NOW() - INTERVAL 2 MONTH), 
-(4, 5, NOW() - INTERVAL 1 MONTH),  
-(6, 7, NOW() - INTERVAL 1 YEAR),   
-(8, 9, NOW() - INTERVAL 4 MONTH), 
-(10, 1, NOW() - INTERVAL 100 DAY); -
+                INSERT INTO Amigos (usuario_id1, usuario_id2, fecha_amistad)
+                VALUES
+                (1, 2, NOW() - INTERVAL 1 YEAR), 
+                (1, 3, NOW() - INTERVAL 6 MONTH), 
+                (1, 4, NOW() - INTERVAL 3 MONTH), 
+                (1, 5, NOW() - INTERVAL 1 MONTH),  
+                (1, 6, NOW() - INTERVAL 20 DAY),   
+                (2, 3, NOW() - INTERVAL 2 MONTH), 
+                (4, 5, NOW() - INTERVAL 1 MONTH),  
+                (6, 7, NOW() - INTERVAL 1 YEAR),   
+                (8, 9, NOW() - INTERVAL 4 MONTH), 
+                (10, 1, NOW() - INTERVAL 100 DAY); -
 
 ____________________________________________________________
 Pregunta 2
