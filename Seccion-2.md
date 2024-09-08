@@ -1,4 +1,4 @@
-
+![image](https://github.com/user-attachments/assets/6a5c21aa-701c-49ec-9475-97410b8e8c54)
 Pregunta 1
 
 Dado el siguiente esquema de base de datos para una
@@ -194,6 +194,23 @@ Con la siguiente estructura doy cumplimiento
             │   └── app.js  -> Configuraciones y puntos de entrada principales poder usar el api con express.
             ├── .env   -> Archivo para almacenar variables de entorno, como las claves API de Supabase y otras configuraciones sensibles. (este archivo es el que permite realizar la conexión con los tokets que provee el servicio en la nube   SUPABASE.
             └── package.json
+
+Contenido de archivos
+![image](https://github.com/user-attachments/assets/f4849525-9b4b-43ba-a556-94763de682e8)
+![image](https://github.com/user-attachments/assets/bbef1d3f-bbfe-46a1-9c77-74eb625e2b6d)
+![image](https://github.com/user-attachments/assets/f6468a60-1748-4579-b655-8718e03b4423)
+![image](https://github.com/user-attachments/assets/40fb8e37-7644-4622-9710-9a5cddc5b961)
+![image](https://github.com/user-attachments/assets/1cfbfe1e-9a59-43c6-a94f-aa3de48c95aa)
+![image](https://github.com/user-attachments/assets/5141c6ea-9985-47a9-9b95-b2550142a661)
+![image](https://github.com/user-attachments/assets/1fe8ba9c-cad2-433a-b662-78e6e32a9ae9)
+![image](https://github.com/user-attachments/assets/3a32ea5e-e8d7-413a-a0fc-528027dad7a9)
+![image](https://github.com/user-attachments/assets/17ebee12-59fa-45fe-9051-d750fb80a58b)
+![image](https://github.com/user-attachments/assets/e6726527-2c64-4476-b746-1cf4f56ca3e9)
+![image](https://github.com/user-attachments/assets/aa6c5b25-270e-402c-a11c-823bc5b896ec)
+![image](https://github.com/user-attachments/assets/595de9c1-0eda-4bfb-b495-e2fe1f5ca89c)
+![image](https://github.com/user-attachments/assets/73888380-b950-4d91-a8e1-e07620884c10)
+
+
 
 
 ____________________________________________________________
