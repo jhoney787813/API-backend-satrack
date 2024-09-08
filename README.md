@@ -7,7 +7,7 @@
 
 Contenido de archivos
 
-Seccion-1.md
+Seccion-1.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Seccion-1.md)
 
   Teoría Avanzada
   
@@ -15,16 +15,16 @@ Seccion-1.md
     Pregunta 2
     Pregunta 3
 
-Seccion-2.md
+Seccion-2.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Seccion-2.md)
 
-  Práctica Compleja
+  Práctica Compleja 
   
     Pregunta 1
     Pregunta 2
      Codigo Fuente: https://github.com/jhoney787813/API-backend-satrack/tree/main/api-nodejs-supabase-satrack     
     Pregunta 3
     
-Seccion-3.md
+Seccion-3.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Seccion-3.md)
 
   Diseño Avanzado
   
