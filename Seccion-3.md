@@ -21,16 +21,16 @@ con múltiples clientes. Incluya detalles sobre la gestión de la
 depreciación de versiones antiguas y la migración de los
 clientes a nuevas versiones de la API
 
-R/= Como no se me pide implementar esta solución en una tecnologia es pecifica, para dar cumplimiento a este requemiento quiero proponer una altertaiva que hemos utilizado en satrack para este proposito, normalmente la he implementando con .NET
+R/= Como no se me pide implementar esta solución en una tecnologia especifica, para dar cumplimiento a este requemiento quiero proponer una altertaiva que hemos utilizado en satrack para este proposito, normalmente la he implementando con .NET
 
 Supogamos que la aplicación esta en producción y cuenta con unos endpoints actuales que no puede ser modificados para no afectar los clientes que consumen nuestras apis en sus contratos. lo que hacemos en configurar nos una ruta alternativa  en nuestro swagger para controlar el ruteo a nuestros endpoints nuevos.
 
 Ahora, como normalmente en nuestras desarrollos tratamos de depender de abstracciones e implementaciones me diante interfaces. esto es un punto favorable y a tener encuenta pues una tactica que podemos utilizar es se pasarar nuestros controladores por versiones 
-si lo que ha cambiado es el contrado de entrada, pero si se requiere cambiar las reglas de negocio para un endpoint nuevo conservando las actuales, entonces  podemos crear una distribución de nuestra capa de negocio (Rules,Core y/O) de tal manera que se agregen nuevas implentaciones por version de las capacidades de negocio y esto no afecta el flujo actual que se usan en los clientes que consumen el api.
+si lo que ha cambiado es el contrado de entrada, pero si se requiere cambiar las reglas de negocio para un endpoint nuevo conservando las actuales, entonces  podemos crear una distribución de nuestra capa de negocio (Rules,Core y/O Domain) de tal manera que se agregen nuevas implentaciones por version de las capacidades de negocio y esto no afecta el flujo actual que se usan en los clientes que consumen el api.
 
 ahora  ¿como podemos manejar la estrategia de deprecación?
 
-definir la fecha limite maximo que los clientes tendran disponibles el soporte de versiones anterores. 
+definir la fecha limite maximo que los clientes tendran disponibles el soporte de versiones ante errores. 
 
 te niendo las nuevas versiones funcionales y las actuales operativas, se puede generar  un comunicado a nivel interno de la organización informando la deprecación de los enpoint actuales y pasar el listado con los cambios y la forma de consumir los nuevos endpoints.
 
