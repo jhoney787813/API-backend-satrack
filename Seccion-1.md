@@ -81,3 +81,13 @@ Discuta las diferencias entre el escalado vertical y el escalado
 horizontal en sistemas backend. Proporcione ejemplos
 específicos de cuándo utilizaría cada enfoque y cómo afectaría
 esto la arquitectura del sistema.
+
+R/= Su pongamos que tenemos un restaurante con renombre y muy visitado con (Alta concurrencia), el espacio donde se sientan los clientes es amplio y con una capacidad para "100" personoas a la vez, sin emgargo la cocina solo tiene capacidad para
+personal suficiente como para preparar 25 platos a la vez.
+
+
+
+
+
+
+
