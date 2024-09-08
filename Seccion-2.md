@@ -10,7 +10,7 @@ los amigos de un usuario específico (por ejemplo, usuario_id =
 1) realizadas en la última semana.
 
 
-
+____________________________________________________________
 Pregunta 2
 Implemente una API RESTful en Node.js utilizando Express que
 permita a los usuarios registrarse, iniciar sesión y publicar
@@ -23,6 +23,7 @@ autenticación basada en tokens JWT. Proporcione pruebas
 unitarias para cada endpoint.
 
 
+____________________________________________________________
 
 Pregunta 3
 Se ha detectado que una de las consultas más utilizadas en
