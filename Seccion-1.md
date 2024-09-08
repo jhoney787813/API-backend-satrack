@@ -90,7 +90,16 @@ personal y recursos suficientes como para preparar 25 platos a la vez.
 Es aqui como podemos aplicar el escalado vertical: que implica hacer una remodelación sobre la cocina  para amplicar su espacio, adicionando mas herramientas, enseres ,y/o personal. aprovechando la capacidad maxima de la concina. sin tener que
 cambiar a un local nuevo o locación diferente del resurante. pero puede existir el riesgo que llegas un punto en que no puedes meter más cosas ni personas con la nueva ampliación de la cocina sin que se vuelva un caos.  la eficiencia se reduce porque los cocineros empiezan a estorbarse entre sí y los costos aumentan. 
 
- la cacapidad del restaurante es 100 personas a la vez y el dueño quiere atentder a 400 personas el simultaneo ¿
+la cacapidad del restaurante es 100 personas a la vez y el dueño quiere atentder a 400 personas el simultaneo debido a que ha crecido exponencialmente el numero de clientes que lo visitan en simultaneo ¿ que deberia hacer para lograr esto?
+
+Es aqui como podemos aplicar el escalado Horizontal: para conservar en funcionamiento la sede actual con la que inicio el restaurante (Local) se sugiere al dueño tomar el local del lado y utilizar el espacio necesario para atender la diferencia de personas para este caso 300 personas en el segundo local y 100 en el primero. para esto debe remodelar el segundo local para crear una nueva cocina dotada  de mas herramientas, enseres ,y/o personal. para lo grar la atención a las otras personas en simultaneo. Cada cocina se encarga de una parte de los pedidos y se distribuye mejor el trabajo.
+
+Ahora orientados al el desarrollo desarrollo de software , ¿cuándo utilizaría cada enfoque y cómo afectaría
+esto la arquitectura del sistema?
+
+
+
+ 
 
 
 
