@@ -9,8 +9,6 @@ escalabilidad y la tolerancia a fallos.
 
 R/=
 
-
-
 -----------------------------------------------------------------------
 
 Pregunta 2
@@ -59,3 +57,21 @@ almacenamiento de archivos (local vs cloud), y cómo
 manejaría la entrega de contenido a usuarios a nivel global.
 Incluya consideraciones sobre CDN (Content Delivery
 Network) y alta disponibilidad.
+
+
+
+R/= propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de todología WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y los usuarios.
+
+¿Por qué necesitamos una solución de almacenamiento para una plataforma de streaming de video?
+  por que tener la capacidad de no solo almancenar si no gestionar la estructura de datos de manera eficiente proporciona una experiencia de streaming fluida y de alta calidad para el usuario.
+
+¿Qué tipos de datos nos piden almacenar?
+  archivos de video que los usuarios generan durante la visualización de streamings.
+
+¿Qué opciones de almacenamiento existen y cuál es la más adecuada?
+
+ 
+
+
+
+
