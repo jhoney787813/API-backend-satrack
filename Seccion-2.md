@@ -153,7 +153,7 @@ autenticación basada en tokens JWT. Proporcione pruebas
 unitarias para cada endpoint.
 
 R/= Se incluye en repositorio la carpeta con el api nodejs
-que contiene lo siguiente:
+que contiene lo siguiente: https://github.com/jhoney787813/API-backend-satrack/tree/main/api-nodejs-supabase-satrack
 
 Se me pidio raliza la APi en node js,pero no se me espeficica que patron o tacticas utilizar para el desarrollo de esta api, sin embargo plantee lo siguiente:
 
