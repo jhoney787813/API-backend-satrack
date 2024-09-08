@@ -13,6 +13,27 @@ realizadas en la última semana.
 R/= para responder esta pregunta digamos que no se espeficica a profundida la estructura con sus tipos de datos ya creada de la bd de red social por lo que quiero
 dejar la siguiente premisa: ¿existen indices creados en los campos clave?
 
+Importante: si se utiliza sql server utilizar la instruccion "with nolock" para evitar bloqueo en las transacciones.
+si se utiliza my sql como en este caso se puede utilizar
+
+ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instancia que lanza la consulta
+       SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED ;
+       
+         SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
+                  FROM Publicaciones p
+                  WHERE p.usuario_id IN (
+                      SELECT 
+                          CASE 
+                              WHEN a.usuario_id1 = 1 THEN a.usuario_id2
+                              WHEN a.usuario_id2 = 1 THEN a.usuario_id1
+                          END
+                      FROM Amigos a
+                      WHERE a.usuario_id1 = 1 OR a.usuario_id2 = 1
+                  )
+                  AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
+                  
+       SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ ;
+
 Si la respuesta no: primero consideraria una subconsulta para enlazar las tablas por los campos: usuario_id2, usuario_id1,fecha_amistad
 
                SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
@@ -109,6 +130,12 @@ insert
                 (6, 7, NOW() - INTERVAL 1 YEAR),   
                 (8, 9, NOW() - INTERVAL 4 MONTH), 
                 (10, 1, NOW() - INTERVAL 100 DAY); 
+
+
+Resultados de nuestro ejemplo:
+
+![image](https://github.com/user-attachments/assets/83747342-f868-42a2-8289-8a8b7b9767ed)
+
 
 ____________________________________________________________
 Pregunta 2
