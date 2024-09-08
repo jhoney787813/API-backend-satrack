@@ -167,6 +167,33 @@ Facilita la mantenibilidad y el desarrollo de la aplicación.
 Reduce la complejidad y la cantidad de código.
 Mejora la legibilidad y la comprensión del código. yo he querido plasmar con esta pequeña aplicación el patrón de diseño "Clean Architecture", ya que se basa en la separación de concerns (preocupaciones) y la utilización de interfaces para comunicar entre los diferentes capas de la aplicación. dando como resultado una distribución logia entre componentes y carpetas, sin embargo tambien puede ser planteada en paquetes externos a el proyecto, para mayor modularidad.
 
+Una vez corriendo el proyeto con el comando "npm start" abre tu navegador y ingresa  http://localhost:5000/api-docs para ver la documentación con swagger que se adiciono.
+
+![image](https://github.com/user-attachments/assets/d3b78738-4f69-4b25-bff8-41900a05c59b)
+
+Con la siguiente estructura doy cumplimiento 
+
+            api-nodejs-supabase-satrack/
+            ├── src/
+            │   ├── config/
+            │   │   └── config.js  -> Configuración de las variables de entorno de conexion al servicio de web de supabase para BD
+            │   ├── controllers/     
+            │   │   ├── authController.js  -> Aquí se proceso las solicitudes de los endpoints  /register y /login.
+            │   │   └── messageController.js  -> Aquí se proceso las solicitudes para el endpoint /messages
+            │   ├── routes/
+            │   │   ├── authRoutes.js  -> definición de las rutas /register y /login. de los endpoint para los controllers
+            │   │   └── messageRoutes.js  -> definición de las rutas /messages delendpoint para los controllers
+            │   ├── services/
+            │   │   ├── authService.js    ->Contiene la lógica de negocio para la autenticación y el registro de usuarios con supabase
+            │   │   └── messageService.js -> lógica de negocio para la publicación de mensajes en la bd de supabase
+            │   ├── repositories/
+            │   │   └── messageRepository.js  -> Se encarga de la interacción la base de datos de Supabase para las operaciones relacionadas con la publicación de mensajes.
+            │   ├── middlewares/
+            │   │   └── authenticateToken.js  -> Verifica que el token JWT devuelto por el endpoinr de /login sea valido, para permitir la publicación de mensajes en supabase
+            │   ├── supabaseClient.js  ->  Exporta las configuraciones para que el api cliente pueda utilizar en los servicios y repositorios que tiene ene el servicio supabase
+            │   └── app.js  -> Configuraciones y puntos de entrada principales poder usar el api con express.
+            ├── .env   -> Archivo para almacenar variables de entorno, como las claves API de Supabase y otras configuraciones sensibles. (este archivo es el que permite realizar la conexión con los tokets que provee el servicio en la nube   SUPABASE.
+            └── package.json
 
 
 ____________________________________________________________
