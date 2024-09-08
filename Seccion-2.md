@@ -155,6 +155,18 @@ unitarias para cada endpoint.
 R/= Se incluye en repositorio la carpeta con el api nodejs
 que contiene lo siguiente:
 
+Se me pidio raliza la APi en node js,pero no se me espeficica que patron o tacticas utilizar para el desarrollo de esta api, sin embargo plantee lo siguiente:
+
+Yo Utilizo una arquitectura limpia basada (Clean Architecture) aunque no aplica 100% todos los conceptos debido a su bajo nivel de baja complejidad del ejercicio, ya que nos permite escalar una aplicación y nos promueve la extensión y mantenibilidad de la misma, donde tambien se tienen en cuenta los principios SOLID.
+
+para mi esto es lo fundamental de esta implementación del api node.js
+
+Ayuda a separar la lógica de negocio de la lógica de presentación.
+Permite una mayor flexibilidad y escalabilidad.
+Facilita la mantenibilidad y el desarrollo de la aplicación.
+Reduce la complejidad y la cantidad de código.
+Mejora la legibilidad y la comprensión del código. yo he querido plasmar con esta pequeña aplicación el patrón de diseño "Clean Architecture", ya que se basa en la separación de concerns (preocupaciones) y la utilización de interfaces para comunicar entre los diferentes capas de la aplicación. dando como resultado una distribución logia entre componentes y carpetas, sin embargo tambien puede ser planteada en paquetes externos a el proyecto, para mayor modularidad.
+
 
 
 ____________________________________________________________
