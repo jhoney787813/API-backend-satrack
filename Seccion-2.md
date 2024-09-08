@@ -152,6 +152,10 @@ Asegúrese de incluir validaciones, manejo de errores y
 autenticación basada en tokens JWT. Proporcione pruebas
 unitarias para cada endpoint.
 
+R/= Se incluye en repositorio la carpeta con el api nodejs
+que contiene lo siguiente:
+
+
 
 ____________________________________________________________
 
