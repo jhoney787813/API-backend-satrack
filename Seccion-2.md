@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6a5c21aa-701c-49ec-9475-97410b8e8c54)
+
 Pregunta 1
 
 Dado el siguiente esquema de base de datos para una
@@ -209,7 +209,7 @@ Contenido de archivos
 ![image](https://github.com/user-attachments/assets/aa6c5b25-270e-402c-a11c-823bc5b896ec)
 ![image](https://github.com/user-attachments/assets/595de9c1-0eda-4bfb-b495-e2fe1f5ca89c)
 ![image](https://github.com/user-attachments/assets/73888380-b950-4d91-a8e1-e07620884c10)
-
+![image](https://github.com/user-attachments/assets/6a5c21aa-701c-49ec-9475-97410b8e8c54)
 
 
 
