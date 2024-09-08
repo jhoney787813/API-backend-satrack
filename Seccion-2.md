@@ -41,7 +41,7 @@ Si la respuesta es sí: y existen indices para lo campos  usuario_id2, usuario_i
 
 
 
-Para verifica el resultado de las cosultas podemos utilizar esta pagina: ([https://www.mycompiler.io/es/new/sql](https://www.programiz.com/sql/online-compiler/)) pegamos los scrips y probamos los resultados de la consulta
+Para verifica el resultado de las cosultas podemos utilizar esta pagina: ( https://www.mycompiler.io/es/new/mysql ) pegamos los scrips y probamos los resultados de la consulta
 
 Script de tablas
 
@@ -49,7 +49,7 @@ Script de tablas
                     id INT AUTO_INCREMENT PRIMARY KEY,      
                     nombre VARCHAR(100) NOT NULL,           
                     email VARCHAR(255) NOT NULL UNIQUE,    
-                    contraseña VARCHAR(255) NOT NULL        
+                    contrasena VARCHAR(255) NOT NULL        
                 );
 
                 CREATE TABLE Publicaciones (
@@ -71,7 +71,7 @@ Script de tablas
 
 insert
 
-                        INSERT INTO Usuarios (nombre, email, contraseña)
+                        INSERT INTO Usuarios (nombre, email, contrasena)
                         VALUES 
                         ('Alex', 'alex@satrack.es', 'Alexpassword123'),
                         ('Wilmar', 'Wilmar@satrack.es', 'WilmarPass1'),
