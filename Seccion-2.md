@@ -234,3 +234,43 @@ respuesta muy lentos. Describa el proceso que seguiría para
 identificar y resolver el problema, incluyendo el análisis de los
 planes de ejecución de las consultas y cualquier optimización
 que considere necesaria.
+
+
+R/= Se recibe el caso inicial donde se expresa que una consulta "N" se esta demoranto mucho en ejecutarse. lo primero que haria yo seria preguntar cual es el percentil 90, con el que se debe evaluar los tiempos de respuesta de la consulta.
+Si este valor ya se conoce y se tiene como un estandar en la compañia, entonces lo que se deberia hacer es primero preparar un ambiente de pruebas equivalente al que procesa la consulta.
+
+Despues de tener el ambiente configuragurado, se lanza la ejecución de la consulta como primera instancia, para evalar dichos tiempos y compararlos con los tiempos de respuesta que se que se requieren ajustar.
+
+Si los tiempos son iguales, parecidos o superiores, entonces se procede con la revisón del scrip o estructura de la consulta, para indentificar las tablas relacionadas y la logia con la cual se diseño la consulta inicial.
+
+Antes de modificar la consulta como tal en el query, verificaria los campos primarios, claves o por los que se estan haciendo realción, posterior a eso verificaria en cada tabla si tiene un indice para cada campo creado, o si este campo puede ser reemplazado en la consulta por uno que si lo tenga.
+
+si da lugar a crear los indices, volveria a lanzar la consulta y verificaria nuevamente los tiempos de respuesta, si mejoran no daria lugar a modificación de la consulta.
+
+en el caso que no mejore con la creanción o modificación de indices, sugeriria modificar la consulta teniendo encuenta:
+
+Resucir al maximo el uso de subconsultas con el operador "IN", utilizar JOIN  en lo posible  antes de llegar a las instrucciones WHERE. igualar en el JOIN los datos coincidientes : Join tabla t on t.campo= tabla1.campo AND  t.campo2= tabla1.campo2 , para acotar campos clave a consultar.
+
+luego de optimizada la consulta, se deberia de aislar la ejecución teniendo el cuenta el principio de Isolación de los datos, aun que esto aplica para operaciones de Inserción, Actualización o eliminación ya que se recomienda usar transacciones lo que podemos a hacer en POSTGRE antes de jecutar una consulta para evitar bloqueo en la tabla es colocar "READ COMMITTED" en las consultas.
+        BEGIN;
+            SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+            SELECT * FROM tabla  ( O consulta a evaluar el rendimiento) 
+        COMMIT;
+        
+Tambien durante cada modificación o tunngin de la consulta es recomendable lanzar  "EXPLAIN ANALYZE" cuyo objetivo es lanzar la traza de cada paso de la consulta, para obtener valores de tiempo de respuesta por cada tabla relacionada y asi identificar tambien la que podria estar teniendo problamas de bloqueo por lecturas o transacciones de escritura.
+
+
+Por ultimo segun documentación tecnica de PostgreSQL si la consulta ha mejorado en los tiempos pero necesita mejorar aun mas, se puede considerar ampliar la capacidad del cluster asignando recuros verticales a la instancia:
+ work_mem: memoria asignada a cada operación de ordenamiento 
+ shared_buffers: cantidad de memoria RAM utilizada para bloques de datos leídos y escritos recientemente.
+ maintenance_work_mem_ : Optimiza tareas de mantenimiento
+
+
+Nota: esa ultima configuración no la recomiendo utilizar de manera olimplica, ya que puede incurrir en sobre costos debido a la ampliación de recursos, deberia evaliar el impacto que tendria en la organización un aumento.
+
+
+
+
+
+
+
