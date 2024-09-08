@@ -39,7 +39,7 @@ Si la respuesta es sí: y existen indices para lo campos  usuario_id2, usuario_i
 
 
 
-Para verifica el resultado de las cosultas podemos utilizar esta pagina: (https://www.mycompiler.io/es/new/sql) pegamos los scrips y probamos los resultados de la consulta
+Para verifica el resultado de las cosultas podemos utilizar esta pagina: ([https://www.mycompiler.io/es/new/sql](https://www.programiz.com/sql/online-compiler/)) pegamos los scrips y probamos los resultados de la consulta
 
 Script de tablas
 
