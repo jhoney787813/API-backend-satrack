@@ -80,7 +80,7 @@ insert
                         ('el primo', 'primo@satrack.es', 'primoPass6'),
                         ('Edy', 'Edy@satrack.es', 'EdyPass7'),
                         ('Sebastian', 'Sebastian@satrack.es', 'SebastianPass8'),
-                        ('andres', 'andres@satrack.es'', 'andresPass9');
+                        ('andres', 'andres@satrack.es', 'andresPass9');
                 
                 INSERT INTO Publicaciones (usuario_id, contenido, fecha_publicacion)
                 VALUES
