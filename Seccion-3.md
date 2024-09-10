@@ -129,7 +129,7 @@ R/= propongo un diseño de plataforma de streaming de video, aplicando parte de 
 
 ATRIBUTOS PRIORIZADOS DEL SISTEMA
 
-Estos atributos considero que satisfacennuestro diseño del sistema ya que pretendemos satisfacer la necesidad de disponibiliar un servicio de streaming y el almacenamiento de archivos con una alta disponibilidad.
+Estos atributos considero que satisfacen nuestro diseño del sistema ya que pretendemos satisfacer la necesidad de disponibiliar un servicio de streaming y el almacenamiento de archivos con una alta disponibilidad.
 
 TECNICOS
 
@@ -148,11 +148,17 @@ DIAGRAMA DE DISEÑO ARQUITECTÓNICO
 
 Componentes 
 
-  1) Almacenamiento de Videos y Metadatos (Azure Storage)
-  2) Almacenamiento de Datos de Usuarios y Transacciones (MySQL)
-  3) Contenedores CDN (Akamai )
-  4) BD CLOUD (MongoDB Atlas)
-  5) Replicador de datos
+  1) Api BFF streaming
+  2) Almacenamiento de Videos  (Azure Storage)
+  3) Micro servicio almacenamiento de Videos y Metadatos
+  5) Almacenamiento de Datos de Usuarios y Transacciones (MySQL)
+  6) Micro servicio Almacenamiento de Datos de Usuarios y Transacciones 
+  7) Contenedores CDN (Akamai )
+  8) Almacenamiento  Metadatos de Videos  (MongoDB Atlas)
+  9) Replicador de datos
+  10) Servidor RMTP
+  11) Clientes Web/Mobil
 
+![DiagramaContenedoresStreamingCDN](https://github.com/user-attachments/assets/d9bb5483-9eaa-4d2f-b5cd-9d858396060f)
 
 
