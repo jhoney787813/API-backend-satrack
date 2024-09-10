@@ -154,8 +154,8 @@ Componentes
 6) API Backend Autenticación y Autorización
 7) API Backend Almacenamiento de Mensajes
 8) Redis Cache Mensajes (Azure Redis Cache)
-9) Base de Datos (NoSQL / SQL)
-
+9) Base de Datos (usuarios, contactos) SQL)
+10)  Base de Datos (Mensajes) NoSQL
 
 
 
