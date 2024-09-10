@@ -30,5 +30,7 @@ Seccion-3.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Secc
   Diseño Avanzado
   
     Pregunta 1
+      Anexos (https://github.com/jhoney787813/API-backend-satrack/blob/main/DiagramaContenedoresMensajesChat.png)
     Pregunta 2   
-    Pregunta 3    
+    Pregunta 3  
+     Anexos (https://github.com/jhoney787813/API-backend-satrack/blob/main/DiagramaContenedoresStreamingCDN.png)
