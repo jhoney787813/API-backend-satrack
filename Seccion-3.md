@@ -68,9 +68,21 @@ Simplifican la implementación con SDKs y servicios administrados, pero pueden s
 SignalR es la elección ideal por su integración nativa con ASP.NET Core, soporte para escalabilidad y manejo sencillo de múltiples transportes en caso de que WebSockets no esté disponible.
 
 
+¿Qué opciones existen para gestionar los mensajes y cuál es la más adecuada?
 
+RabbitMQ vs Kafka
 
+RabbitMQ:
 
+    Fácil de configurar y excelente para sistemas con baja latencia y volumen moderado de mensajes.
+    
+    Soporta diversas estrategias de reintento y confirmación de mensajes.
+
+Kafka:
+
+    Altamente escalable y diseñado para manejar millones de mensajes por segundo.
+    
+    Ideal para aplicaciones con un alto volumen de tráfico y la necesidad de procesamiento de eventos en tiempo real.
 
 -----------------------------------------------------------------------
 
