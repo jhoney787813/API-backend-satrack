@@ -123,6 +123,26 @@ Tolerancia a fallos
     
     Replicación y backup en bases de datos y Redis Cache para asegurar la disponibilidad y evitar pérdida de datos.
 
+¿Por qué Redis es la seleccionada en esta arquitectura?
+
+por que el principal requerimiento es entregar a los usuarios experiencia de chat fluida y rápida para los usuarios. considero que es mas rapido consultar una cache en moria que ir a BD para cargar los ultimos mensajes enviamos por los usurios.
+
+
+ATRIBUTOS PRIORIZADOS DEL SISTEMA
+
+TECNICOS
+
+![consistencia_total](https://github.com/user-attachments/assets/a014866a-2532-40c3-bd82-d61cc481a147)
+![observabiliad](https://github.com/user-attachments/assets/bc594e56-4a94-40ae-ac80-77b753451b2d)
+
+
+NEGOCIO
+
+![escalabilidad](https://github.com/user-attachments/assets/38ee3251-e2ee-49d1-abd2-dc8b05ec3975)
+![disponibilidad](https://github.com/user-attachments/assets/6dd02dd1-2c67-42d1-8758-e3457f57eeaa)  
+![seguridad](https://github.com/user-attachments/assets/be208d67-4052-4f10-8dd0-078ecb313268)
+![desempeño](https://github.com/user-attachments/assets/ccb727fd-0a2e-4dcb-ad7a-386142d74a97)
+
 -----------------------------------------------------------------------
 
 Pregunta 2
