@@ -120,6 +120,9 @@ podemos definir la redirección de peticiones, me diante los dns para guiar a lo
 
 Hoy en satrack hemos implementado este mecanisco de redirección sobre los recursos de múltiples APIs para que se reduzca que cada que se cambie la implementación sobre el back, los clientes tengan que actualizar las rutas a los nuevos endpoint, esto facilita la mantenibilidad ya que los clientes siempre se conectan a un mismo DNS o url para realizar las peticiones.
 
+¿Cuál es la más adecuada?
+
+Kafka es más adecuado para una aplicación de mensajería en tiempo real que requiere alta escalabilidad y capacidad para manejar grandes volúmenes de mensajes simultáneamente debido a su costo de implementación ya que al ser opensource se puede tener un servicio propio y administrable en una red interna y externa.
 
 
 -----------------------------------------------------------------------
