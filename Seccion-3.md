@@ -167,7 +167,8 @@ FLUJO DE COMUNICACIÓN
  4. Los servicios backend manejan la lógica de negocio como enviar, almacenar y autenticar los mensajes.
  5. Redis se utiliza para la caché y la distribución eficiente de mensajes entre los servicios que SignalR lee y notifica a la UI.
            
-![DiagramaContenedoresMensajesChat](https://github.com/user-attachments/assets/3c0055b6-40db-40be-a617-ab8033b3f372)
+![DiagramaContenedoresMensajesChat](https://github.com/user-attachments/assets/11d1554d-2f52-44d9-a169-b15d8bf18e49)
+
 
 -----------------------------------------------------------------------
 
