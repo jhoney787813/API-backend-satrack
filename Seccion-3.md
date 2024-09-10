@@ -154,13 +154,20 @@ Componentes
 6) API Backend Autenticación y Autorización
 7) API Backend Almacenamiento de Mensajes
 8) Redis Cache Mensajes (Azure Redis Cache)
-9) Base de Datos (usuarios)
+9) Base de Datos usuarios (PostgreSQL)
 10) Base de Datos contactos (PostgreSQL)
 11) Base de Datos Mensajes (CosmosDB)
 
 
+FLUJO DE COMUNICACIÓN
 
-
+ 1. Los clientes se conectan a través de WebSocket o HTTP utilizando SignalR para establecer la comunicación en tiempo real.                                                                     
+ 2. SignalR gestiona la conexión en tiempo real y distribuye los mensajes entre los clientes conectados.
+ 3. Los mensajes y solicitudes pasan por el API Gateway, que distribuye la carga de manera uniforme.                                       
+ 4. Los servicios backend manejan la lógica de negocio como enviar, almacenar y autenticar los mensajes.
+ 5. Redis se utiliza para la caché y la distribución eficiente de mensajes entre los servicios que SignalR lee y notifica a la UI.
+           
+![DiagramaContenedoresMensajesChat](https://github.com/user-attachments/assets/3c0055b6-40db-40be-a617-ab8033b3f372)
 
 -----------------------------------------------------------------------
 
@@ -313,5 +320,8 @@ Componentes
   11) Clientes Web/Mobil
 
 ![DiagramaContenedoresStreamingCDN](https://github.com/user-attachments/assets/d9bb5483-9eaa-4d2f-b5cd-9d858396060f)
+
+        
+
 
 
