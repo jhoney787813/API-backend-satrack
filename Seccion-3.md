@@ -127,3 +127,32 @@ R/= propongo un diseño de plataforma de streaming de video, aplicando parte de 
 
   con servicios CLOUD este apartado esta cubierto ya que para nuestro caso se utilizara Blob Storage ( Azure, Amazon S3) y se pueden utilizar mecanismos de replicación(backup) ya que el contenido puede estar accesible desde diferentes zonas horarias y se evita tener que estar pendiente del hardware ante desastres o eventos. Ya que estos proveedores de servicios implementan dischos mecanismos en sus propuestas de servicio.
 
+ATRIBUTOS PRIORIZADOS DEL SISTEMA
+
+Estos atributos considero que satisfacennuestro diseño del sistema ya que pretendemos satisfacer la necesidad de disponibiliar un servicio de streaming y el almacenamiento de archivos con una alta disponibilidad.
+
+TECNICOS
+
+  ![facilidad_administracion](https://github.com/user-attachments/assets/1d8ca100-3796-4b08-95f7-6fcc636ba1ff)
+  ![facilidad_despliegue](https://github.com/user-attachments/assets/f0220fff-1aac-4718-a27a-f6496f187124)
+
+NEGOCIO
+
+  ![disponibilidad](https://github.com/user-attachments/assets/8a3c4ff8-2c2b-403e-a488-4bf3a5d6628c)
+  ![escalabilidad](https://github.com/user-attachments/assets/81408c5c-26c5-4d58-b577-52836b1ceb98)
+  ![costo eficiente](https://github.com/user-attachments/assets/b36b3976-06d6-49b6-a1d3-e6873740902d)
+  ![flexibilidad](https://github.com/user-attachments/assets/45d53d24-861c-49a7-893e-7f3361e8b1e3)
+
+
+DIAGRAMA DE DISEÑO ARQUITECTÓNICO
+
+Componentes 
+
+  1) Almacenamiento de Videos y Metadatos (Azure Storage)
+  2) Almacenamiento de Datos de Usuarios y Transacciones (MySQL)
+  3) Contenedores CDN (Akamai )
+  4) BD CLOUD (MongoDB Atlas)
+  5) Replicador de datos
+
+
+
