@@ -9,7 +9,7 @@ Contenido de archivos
 
 Seccion-1.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Seccion-1.md)
 
-  Teoría Avanzada
+  Teoría Avanzada 30%
   
     Pregunta 1
     Pregunta 2
@@ -17,7 +17,7 @@ Seccion-1.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Secc
 
 Seccion-2.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Seccion-2.md)
 
-  Práctica Compleja 
+  Práctica Compleja 30%
   
     Pregunta 1
     Pregunta 2
@@ -27,7 +27,7 @@ Seccion-2.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Secc
     
 Seccion-3.md (https://github.com/jhoney787813/API-backend-satrack/blob/main/Seccion-3.md)
 
-  Diseño Avanzado
+  Diseño Avanzado 40%
   
     Pregunta 1
       Anexos (https://github.com/jhoney787813/API-backend-satrack/blob/main/DiagramaContenedoresMensajesChat.png)
