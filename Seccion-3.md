@@ -91,7 +91,7 @@ Kafka es más adecuado para una aplicación de mensajería en tiempo real que re
 
 ¿Qué opciones de almacenamiento existen para mensajes y cuál es la más adecuada?
 
-Bases de Datos NoSQL (MongoDB, CosmosDB) vs SQL (PostgreSQL, SQL Server)
+Bases de Datos NoSQL (MongoDB, CosmosDB) vs SQL (PostgreSQL, SQL Server, MySQL)
 
 NoSQL (MongoDB, CosmosDB, MongoDB Atlas):
 
@@ -154,8 +154,9 @@ Componentes
 6) API Backend Autenticación y Autorización
 7) API Backend Almacenamiento de Mensajes
 8) Redis Cache Mensajes (Azure Redis Cache)
-9) Base de Datos (usuarios, contactos) SQL)
-10)  Base de Datos (Mensajes) NoSQL
+9) Base de Datos (usuarios)
+10) Base de Datos contactos (PostgreSQL)
+11) Base de Datos Mensajes (CosmosDB)
 
 
 
