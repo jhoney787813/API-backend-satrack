@@ -88,6 +88,27 @@ Kafka:
 
 Kafka es más adecuado para una aplicación de mensajería en tiempo real que requiere alta escalabilidad y capacidad para manejar grandes volúmenes de mensajes simultáneamente debido a su costo de implementación ya que al ser opensource se puede tener un servicio propio y administrable en una red interna y externa.
 
+
+¿Qué opciones de almacenamiento existen para mensajes y cuál es la más adecuada?
+
+Bases de Datos NoSQL (MongoDB, CosmosDB) vs SQL (PostgreSQL, SQL Server)
+
+NoSQL (MongoDB, CosmosDB, MongoDB Atlas):
+
+    Escalabilidad horizontal y flexibilidad en el manejo de grandes volúmenes de mensajes.
+
+    No requieren esquemas rígidos, lo que facilita el manejo de datos no estructurados como los mensajes.
+
+SQL (PostgreSQL, SQL Server,MySQL):
+
+    Implementan principios ACID que aseguran transacciones seguras y datos estructurados.
+
+    Mayor integridad referencial, pero con menos flexibilidad y escalabilidad para datos no estructurados.
+
+¿Cuál es la más adecuada?
+
+Para nuestro caso debido a la alta concurrencia y velocidad con que se debe proveer la información la alternativa mas eficiente para este caso  seria NoSQL, debido a su capacidad para manejar grandes volúmenes de mensajes y flexibilidad en la estructura de datos.
+
 -----------------------------------------------------------------------
 
 Pregunta 2
