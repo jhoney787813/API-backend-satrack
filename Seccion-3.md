@@ -143,6 +143,24 @@ NEGOCIO
 ![seguridad](https://github.com/user-attachments/assets/be208d67-4052-4f10-8dd0-078ecb313268)
 ![desempeño](https://github.com/user-attachments/assets/ccb727fd-0a2e-4dcb-ad7a-386142d74a97)
 
+DIAGRAMA DE DISEÑO ARQUITECTÓNICO
+
+Componentes 
+
+1) Client Applications (Aplicaciones Cliente)
+2) SignalR Service (SignalR)
+3) API Gateway / Load Balancer (APIXIS SATRACK)
+5) API Backend Mensajería Service
+6) API Backend Autenticación y Autorización
+7) API Backend Almacenamiento de Mensajes
+8) Redis Cache Mensajes (Azure Redis Cache)
+9) Base de Datos (NoSQL / SQL)
+
+
+
+
+
+
 -----------------------------------------------------------------------
 
 Pregunta 2
