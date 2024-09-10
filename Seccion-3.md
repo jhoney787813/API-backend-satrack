@@ -7,7 +7,62 @@ la arquitectura, los componentes clave (como servidores de
 mensajería, bases de datos, etc.), y cómo manejaría la
 escalabilidad y la tolerancia a fallos.
 
-R/=
+R/=Propongo un diseño de un sistema de mensajería en tiempo real para una aplicación de chat, aplicando parte de los conceptos de la metodología WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y de los usuarios.
+
+¿Por qué necesitamos un sistema de mensajería en tiempo real para una aplicación de chat?
+
+Porque permitir una comunicación instantánea entre usuarios mejora la experiencia, aumenta la interactividad y es fundamental para cualquier aplicación moderna de chat que busque mantenerse competitiva y relevante.
+
+¿Qué componentes necesitamos para un sistema de mensajería en tiempo real?
+
+Servidores de mensajería en tiempo real (SignalR): 
+
+    Para manejar la comunicación bidireccional y en tiempo real entre clientes y servidores.
+
+Microservicios: 
+
+    Para gestionar la lógica de negocio como el manejo de usuarios, autenticación, y la entrega de mensajes.
+  
+Message Broker (RabbitMQ o Kafka): 
+
+    Para desacoplar la producción y consumo de mensajes y garantizar la entrega confiable.
+
+Base de Datos (NoSQL y SQL): 
+
+    Para almacenar la información estructurada (usuarios, contactos) y no estructurada (mensajes).
+
+Cache (Redis): 
+
+    Para acelerar el acceso a datos frecuentemente solicitados, como sesiones y mensajes recientes.
+
+Balanceadores de carga: 
+
+    Para distribuir la carga entre las instancias del sistema.
+
+Monitoreo y alertas: 
+
+    Para asegurar la disponibilidad y el rendimiento del sistema.
+
+
+¿Qué opciones tenemos para los servidores de mensajería en tiempo real y cuál es la más adecuada?
+
+SignalR vs WebSockets Puro vs Servicios de Terceros (Pusher, PubNub)
+
+SignalR:
+
+Proporciona una capa de abstracción sobre WebSockets, Long Polling y Server-Sent Events.
+Integración nativa con .NET, ideal para aplicaciones basadas en ASP.NET Core.
+Escalabilidad mediante Redis para gestionar conexiones distribuidas.
+
+WebSockets Puro:
+
+Menor sobrecarga en comparación con SignalR pero requiere más desarrollo personalizado.
+Mayor control sobre la implementación y rendimiento.
+
+Servicios de Terceros (Pusher, PubNub):
+
+Simplifican la implementación con SDKs y servicios administrados, pero pueden ser costosos y limitar el control.
+
 
 -----------------------------------------------------------------------
 
