@@ -66,6 +66,7 @@ R/= propongo un diseño de plataforma de streaming de video, aplicando parte de 
   por que tener la capacidad de no solo almancenar si no gestionar la estructura de datos de manera eficiente proporciona una experiencia de streaming fluida y de alta calidad para el usuario.
 
 ¿Qué tipos de datos nos piden almacenar?
+
   archivos de video que los usuarios generan durante la visualización de streamings.
 
 ¿Qué opciones de almacenamiento existen y cuál es la más adecuada?
@@ -120,9 +121,9 @@ R/= propongo un diseño de plataforma de streaming de video, aplicando parte de 
 
 ¿Cómo manejar la entrega de contenido a usuarios a nivel global?
 
-se puden usar servicios como (Cloudflare, AWS CloudFront, Akamai, Cloud CDN and Media CDN (Google) ), ya que esto nos permitiria distribuir el contenido de video reduciendo los tiempos de carga de los archivos debio a su manejo de cache y velocidad de descarga para los usuarios de manera nativa en los navegadores o clientes web.
+  se puden usar servicios como (Cloudflare, AWS CloudFront, Akamai, Cloud CDN and Media CDN (Google) ), ya que esto nos permitiria distribuir el contenido de video reduciendo los tiempos de carga de los archivos debio a su manejo de cache y velocidad de descarga para los usuarios de manera nativa en los navegadores o clientes web.
 
 ¿Cómo asegurar la alta disponibilidad del sistema?
 
-con servicios CLOUD este apartado esta cubierto ya que para nuestro caso se utilizara Blob Storage ( Azure, Amazon S3) y se pueden utilizar mecanismos de replicación(backup) ya que el contenido puede estar accesible desde diferentes zonas horarias y se evita tener que estar pendiente del hardware ante desastres o eventos. Ya que estos proveedores de servicios implementan dischos mecanismos en sus propuestas de servicio.
+  con servicios CLOUD este apartado esta cubierto ya que para nuestro caso se utilizara Blob Storage ( Azure, Amazon S3) y se pueden utilizar mecanismos de replicación(backup) ya que el contenido puede estar accesible desde diferentes zonas horarias y se evita tener que estar pendiente del hardware ante desastres o eventos. Ya que estos proveedores de servicios implementan dischos mecanismos en sus propuestas de servicio.
 
