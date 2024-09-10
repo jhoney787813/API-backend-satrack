@@ -109,6 +109,20 @@ SQL (PostgreSQL, SQL Server,MySQL):
 
 Para nuestro caso debido a la alta concurrencia y velocidad con que se debe proveer la información la alternativa mas eficiente para este caso  seria NoSQL, debido a su capacidad para manejar grandes volúmenes de mensajes y flexibilidad en la estructura de datos.
 
+¿Cómo manejar la escalabilidad y tolerancia a fallos?
+
+Escalabilidad
+
+    Implementar múltiples instancias de microservicios y SignalR, balanceadas mediante un balanceador de carga.
+    
+    Redis utilizado como backplane para SignalR facilita la sincronización entre servidores distribuidos.
+
+Tolerancia a fallos
+
+    Podemos user Message Brokers como Kafka para asegurar la entrega y retransmisión de mensajes.
+    
+    Replicación y backup en bases de datos y Redis Cache para asegurar la disponibilidad y evitar pérdida de datos.
+
 -----------------------------------------------------------------------
 
 Pregunta 2
