@@ -70,7 +70,33 @@ R/= propongo un diseño de plataforma de streaming de video, aplicando parte de 
 
 ¿Qué opciones de almacenamiento existen y cuál es la más adecuada?
 
+ 1. Almacenamiento SQL vs NoSQL
+    
+ Entre las bases de datos NoSQL tenemos los siguientes proveedores de servicios (Document Store (MongoDB, CosmosDB) o Blob Storage ( Azure, Amazon S3 )
  
+ Entre las bases de datos  SQL  tenemos los siguientes motores ( PostgreSQL, MySQL o SQL SERVER)
+ 
+  Ventajas de NoSQL
+  
+  Permite manejar grandes volumes de datos (archivos), pero puede complejizar la estructuración de los datos, ya que no se tiene una interidad referencial tan rigurosa en comparación de los datos que estan en BD SQL.
+  
+  Estructuras flexibles no condicionadas a integridad referenciales estrictas.
+  
+  Proporciona adaptabilidad en los tipos de datos.
+  
+  El costo puede ser alto dependiendo de la cantidad de inserciones de los archivos.
+
+
+  
+  Ventajas de SQL
+  
+  Al poder implementar los principios ACID, estas nos nos permite aislar las transacciones y tener unos datos estructurados, lo que nos permite tener integridad referencial. 
+  
+  Soporte de almacenamiento a grandes volumenes de datos.
+  
+
+    
+ 2. Gestión del Almacenamiento de Archivos (Local vs Cloud)
 
 
 
