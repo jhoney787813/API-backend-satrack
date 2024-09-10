@@ -60,7 +60,7 @@ Network) y alta disponibilidad.
 
 
 
-R/= propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de todología WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y los usuarios.
+R/= propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de la metodologia WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y los usuarios.
 
 ¿Por qué necesitamos una solución de almacenamiento para una plataforma de streaming de video?
   por que tener la capacidad de no solo almancenar si no gestionar la estructura de datos de manera eficiente proporciona una experiencia de streaming fluida y de alta calidad para el usuario.
@@ -70,34 +70,59 @@ R/= propongo un diseño de plataforma de streaming de video, aplicando parte de 
 
 ¿Qué opciones de almacenamiento existen y cuál es la más adecuada?
 
- 1. Almacenamiento SQL vs NoSQL
+   1. Almacenamiento SQL vs NoSQL
+      
+     Entre las bases de datos NoSQL tenemos los siguientes proveedores de servicios (Document Store (MongoDB, CosmosDB) o Blob Storage ( Azure, Amazon S3 )
+   
+     Entre las bases de datos  SQL  tenemos los siguientes motores ( PostgreSQL, MySQL o SQL SERVER)
+   
+      Ventajas de NoSQL
     
- Entre las bases de datos NoSQL tenemos los siguientes proveedores de servicios (Document Store (MongoDB, CosmosDB) o Blob Storage ( Azure, Amazon S3 )
- 
- Entre las bases de datos  SQL  tenemos los siguientes motores ( PostgreSQL, MySQL o SQL SERVER)
- 
-  Ventajas de NoSQL
+      Permite manejar grandes volumes de datos (archivos), pero puede complejizar la estructuración de los datos, ya que no se tiene una interidad referencial tan rigurosa en comparación de los datos que estan en BD SQL.
+      
+      Estructuras flexibles no condicionadas a integridad referenciales estrictas.
+      
+      Proporciona adaptabilidad en los tipos de datos.
+      
+      El costo puede ser alto dependiendo de la cantidad de inserciones de los archivos.
   
-  Permite manejar grandes volumes de datos (archivos), pero puede complejizar la estructuración de los datos, ya que no se tiene una interidad referencial tan rigurosa en comparación de los datos que estan en BD SQL.
-  
-  Estructuras flexibles no condicionadas a integridad referenciales estrictas.
-  
-  Proporciona adaptabilidad en los tipos de datos.
-  
-  El costo puede ser alto dependiendo de la cantidad de inserciones de los archivos.
-
-
-  
-  Ventajas de SQL
-  
-  Al poder implementar los principios ACID, estas nos nos permite aislar las transacciones y tener unos datos estructurados, lo que nos permite tener integridad referencial. 
-  
-  Soporte de almacenamiento a grandes volumenes de datos.
-  
-
     
- 2. Gestión del Almacenamiento de Archivos (Local vs Cloud)
+    Ventajas de SQL
+    
+      Al poder implementar los principios ACID, estas nos nos permite aislar las transacciones y tener unos datos estructurados, lo que nos permite tener integridad referencial. 
+      
+      Soporte de almacenamiento a grandes volumenes de datos.
+    
+      permite configuración de cluster con manejo parametrimetrizables de recursos verticales.
+  
+  ¿cuál es la más adecuada?
+  
+    Para nuestro caso se elije las NoSQL por su alta escalabilidad y falicidad de administración de grandes cantidades de archivos.
+  
+      
+   2. Gestión del Almacenamiento de Archivos (Local vs Cloud)
+  
+  Ventajas Cloud 
+  
+    se considera que una ventaja la alta disponibilidad, y simplificación en la gestión del almacenamiento.
+  
+    los servicios dedicados reduncen problemas debido a la mantenibilidad de hardware propio.
+  
+  Ventajas Local 
+  
+    Los datos quedan en dominos de adminitración propia de las organizaciones.
+  
+    se puede adaptar la capacidad de recursos  horizontales y verticales de manera controlada, para controlas los costos.
+  
+  ¿cuál es el más adecuada?
+  
+   Almacenamiento en la nube, debido a que el principal requerimiento de la arquitectura es que sea altamente disponible y maneje recursos CDN.
 
+¿Cómo manejar la entrega de contenido a usuarios a nivel global?
 
+se puden usar servicios como (Cloudflare, AWS CloudFront, Akamai, Cloud CDN and Media CDN (Google) ), ya que esto nos permitiria distribuir el contenido de video reduciendo los tiempos de carga de los archivos debio a su manejo de cache y velocidad de descarga para los usuarios de manera nativa en los navegadores o clientes web.
 
+¿Cómo asegurar la alta disponibilidad del sistema?
+
+con servicios CLOUD este apartado esta cubierto ya que para nuestro caso se utilizara Blob Storage ( Azure, Amazon S3) y se pueden utilizar mecanismos de replicación(backup) ya que el contenido puede estar accesible desde diferentes zonas horarias y se evita tener que estar pendiente del hardware ante desastres o eventos. Ya que estos proveedores de servicios implementan dischos mecanismos en sus propuestas de servicio.
 
