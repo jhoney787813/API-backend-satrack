@@ -63,6 +63,14 @@ Servicios de Terceros (Pusher, PubNub):
 
 Simplifican la implementación con SDKs y servicios administrados, pero pueden ser costosos y limitar el control.
 
+¿Cuál es la más adecuada?
+
+SignalR es la elección ideal por su integración nativa con ASP.NET Core, soporte para escalabilidad y manejo sencillo de múltiples transportes en caso de que WebSockets no esté disponible.
+
+
+
+
+
 
 -----------------------------------------------------------------------
 
