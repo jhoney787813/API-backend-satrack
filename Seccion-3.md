@@ -178,86 +178,69 @@ Hoy en SatRack hemos implementado este mecanismo de redirección sobre los recur
 -----------------------------------------------------------------------
 # Pregunta 3
 
-Diseñe una solución de almacenamiento de datos para una
-plataforma de streaming de video. Discuta las opciones de
-almacenamiento (SQL vs NoSQL), la gestión de
-almacenamiento de archivos (local vs cloud), y cómo
-manejaría la entrega de contenido a usuarios a nivel global.
-Incluya consideraciones sobre CDN (Content Delivery
-Network) y alta disponibilidad.
+# Solución de Almacenamiento de Datos para una Plataforma de Streaming de Video
 
+## Respuesta
 
+Propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de la metodología **WHY DRIVEN DESIGN** para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y de los usuarios.
 
-**R/=** propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de la metodologia WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y los usuarios.
+### ¿Por qué necesitamos una solución de almacenamiento para una plataforma de streaming de video?
 
-¿Por qué necesitamos una solución de almacenamiento para una plataforma de streaming de video?
-  por que tener la capacidad de no solo almancenar si no gestionar la estructura de datos de manera eficiente proporciona una experiencia de streaming fluida y de alta calidad para el usuario.
+Porque tener la capacidad de no solo almacenar, sino gestionar la estructura de datos de manera eficiente proporciona una experiencia de streaming fluida y de alta calidad para el usuario.
 
-¿Qué tipos de datos nos piden almacenar?
+### ¿Qué tipos de datos nos piden almacenar?
 
-  archivos de video que los usuarios generan durante la visualización de streamings.
+- Archivos de video que los usuarios generan durante la visualización de streamings.
 
-¿Qué opciones de almacenamiento existen y cuál es la más adecuada?
+### ¿Qué opciones de almacenamiento existen y cuál es la más adecuada?
 
-   1. Almacenamiento SQL vs NoSQL
-      
-     Entre las bases de datos NoSQL tenemos los siguientes proveedores de servicios (Document Store (MongoDB, CosmosDB) o Blob Storage ( Azure, Amazon S3 )
+1. **Almacenamiento SQL vs NoSQL**
    
-     Entre las bases de datos  SQL  tenemos los siguientes motores ( PostgreSQL, MySQL o SQL SERVER)
+   - **NoSQL**:
+     - Proveedores: Document Store (MongoDB, CosmosDB) o Blob Storage (Azure, Amazon S3).
+     - **Ventajas**:
+       - Permite manejar grandes volúmenes de datos (archivos).
+       - Estructuras flexibles no condicionadas a integridades referenciales estrictas.
+       - Proporciona adaptabilidad en los tipos de datos.
+       - El costo puede ser alto dependiendo de la cantidad de inserciones de los archivos.
    
-      Ventajas de NoSQL
-    
-      Permite manejar grandes volumes de datos (archivos), pero puede complejizar la estructuración de los datos, ya que no se tiene una interidad referencial tan rigurosa en comparación de los datos que estan en BD SQL.
-      
-      Estructuras flexibles no condicionadas a integridad referenciales estrictas.
-      
-      Proporciona adaptabilidad en los tipos de datos.
-      
-      El costo puede ser alto dependiendo de la cantidad de inserciones de los archivos.
-  
-    
-    Ventajas de SQL
-    
-      Al poder implementar los principios ACID, estas nos nos permite aislar las transacciones y tener unos datos estructurados, lo que nos permite tener integridad referencial. 
-      
-      Soporte de almacenamiento a grandes volumenes de datos.
-    
-      permite configuración de cluster con manejo parametrimetrizables de recursos verticales.
-  
-  ¿cuál es la más adecuada?
-  
-    Para nuestro caso se elije las NoSQL por su alta escalabilidad y falicidad de administración de grandes cantidades de archivos.
-  
-      
-   2. Gestión del Almacenamiento de Archivos (Local vs Cloud)
-  
-  Ventajas Cloud 
-  
-    se considera que una ventaja la alta disponibilidad, y simplificación en la gestión del almacenamiento.
-  
-    los servicios dedicados reduncen problemas debido a la mantenibilidad de hardware propio.
-  
-  Ventajas Local 
-  
-    Los datos quedan en dominos de adminitración propia de las organizaciones.
-  
-    se puede adaptar la capacidad de recursos  horizontales y verticales de manera controlada, para controlas los costos.
-  
-  ¿cuál es el más adecuada?
-  
+   - **SQL**:
+     - Motores: PostgreSQL, MySQL o SQL Server.
+     - **Ventajas**:
+       - Implementa principios ACID, permitiendo aislar transacciones y tener datos estructurados.
+       - Soporte de almacenamiento a grandes volúmenes de datos.
+       - Permite configuración de clúster con manejo parametrizable de recursos verticales.
+
+   **¿Cuál es la más adecuada?**
+   
+   Para nuestro caso se elige NoSQL por su alta escalabilidad y facilidad de administración de grandes cantidades de archivos.
+
+2. **Gestión del Almacenamiento de Archivos (Local vs Cloud)**
+   
+   - **Ventajas Cloud**:
+     - Alta disponibilidad y simplificación en la gestión del almacenamiento.
+     - Los servicios dedicados reducen problemas debido a la mantenibilidad de hardware propio.
+   
+   - **Ventajas Local**:
+     - Los datos quedan en dominios de administración propia de las organizaciones.
+     - Se puede adaptar la capacidad de recursos horizontales y verticales de manera controlada para controlar costos.
+
+   **¿Cuál es el más adecuado?**
+   
    Almacenamiento en la nube, debido a que el principal requerimiento de la arquitectura es que sea altamente disponible y maneje recursos CDN.
 
-¿Cómo manejar la entrega de contenido a usuarios a nivel global?
+### ¿Cómo manejar la entrega de contenido a usuarios a nivel global?
 
-  se puden usar servicios como (Cloudflare, AWS CloudFront, Akamai, Cloud CDN and Media CDN (Google) ), ya que esto nos permitiria distribuir el contenido de video reduciendo los tiempos de carga de los archivos debio a su manejo de cache y velocidad de descarga para los usuarios de manera nativa en los navegadores o clientes web.
+Se pueden usar servicios como Cloudflare, AWS CloudFront, Akamai, Cloud CDN y Media CDN (Google), ya que esto nos permitiría distribuir el contenido de video reduciendo los tiempos de carga de los archivos debido a su manejo de caché y velocidad de descarga para los usuarios de manera nativa en los navegadores o clientes web.
 
-¿Cómo asegurar la alta disponibilidad del sistema?
+### ¿Cómo asegurar la alta disponibilidad del sistema?
 
-  con servicios CLOUD este apartado esta cubierto ya que para nuestro caso se utilizara Blob Storage ( Azure, Amazon S3) y se pueden utilizar mecanismos de replicación(backup) ya que el contenido puede estar accesible desde diferentes zonas horarias y se evita tener que estar pendiente del hardware ante desastres o eventos. Ya que estos proveedores de servicios implementan dischos mecanismos en sus propuestas de servicio.
+Con servicios cloud, este apartado está cubierto. Para nuestro caso, se utilizará Blob Storage (Azure, Amazon S3) y se pueden utilizar mecanismos de replicación (backup) para asegurar que el contenido esté accesible desde diferentes zonas horarias, evitando depender del hardware ante desastres o eventos. Estos proveedores implementan mecanismos de resiliencia en sus propuestas de servicio.
 
-ATRIBUTOS PRIORIZADOS DEL SISTEMA
+## Atributos Priorizados del Sistema
 
-Estos atributos considero que satisfacen nuestro diseño del sistema ya que pretendemos satisfacer la necesidad de disponibiliar un servicio de streaming y el almacenamiento de archivos con una alta disponibilidad.
+Estos atributos consideran que satisfacen nuestro diseño del sistema, ya que buscamos garantizar la disponibilidad de un servicio de streaming y el almacenamiento de archivos con alta disponibilidad.
+
 
 TECNICOS
 
