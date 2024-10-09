@@ -19,7 +19,7 @@ Para responder a esta pregunta, asumimos que no se especifica a profundidad la e
 *Si la respuesta **no:*** 
 
 primero consideraria una subconsulta para enlazar las tablas por los campos: usuario_id2, usuario_id1,fecha_amistad
-
+   ```sql
                SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
                 FROM Publicaciones p
                 WHERE p.usuario_id IN (
@@ -33,11 +33,12 @@ primero consideraria una subconsulta para enlazar las tablas por los campos: usu
                 )
                 AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
 
-
+    ```
 *Si la respuesta es **sí:***
 
 y existen indices para lo campos  usuario_id2, usuario_id1,fecha_amistad. esto nos ahorria tiempo de procesamiento y podriamos inlcuso aprovechas las capacidades de la instrucción "JOIN" de sql
-            ```sql
+
+```sql
                  SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
                 FROM Publicaciones p
                 JOIN Amigos a 
@@ -46,7 +47,7 @@ y existen indices para lo campos  usuario_id2, usuario_id1,fecha_amistad. esto n
                   AND p.usuario_id != 1
                   AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
 
-              ```
+   ```
 
 
 **Importante:** si se utiliza sql server utilizar la instruccion "with nolock" para evitar bloqueo en las transacciones.
@@ -54,7 +55,7 @@ si se utiliza my sql como en este caso se puede utilizar
 
 ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instancia que lanza la consulta
              
-              ```sql
+```sql
               SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED ;
               
                 SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
@@ -71,13 +72,13 @@ ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instanci
                          AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
                          
               SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ ;
-            ```
+```
 Para verifica el resultado de las cosultas podemos utilizar esta pagina: ( https://www.mycompiler.io/es/new/mysql ) pegamos los scrips y probamos los resultados de la consulta
 
 Script de tablas
 **Create**
 
-   ```sql
+```sql
                 CREATE TABLE Usuarios (
                     id INT AUTO_INCREMENT PRIMARY KEY,      
                     nombre VARCHAR(100) NOT NULL,           
@@ -101,7 +102,8 @@ Script de tablas
                     FOREIGN KEY (usuario_id1) REFERENCES Usuarios(id),
                     FOREIGN KEY (usuario_id2) REFERENCES Usuarios(id)  
                 );
-   ```
+
+```
 
 **Insert**
 
@@ -230,48 +232,61 @@ Contenido de archivos
 ![image](https://github.com/user-attachments/assets/6a5c21aa-701c-49ec-9475-97410b8e8c54)
 
 ____________________________________________________________
+# Pregunta 3
 
-Pregunta 3
+Se ha detectado que una de las consultas más utilizadas en una base de datos PostgreSQL está causando tiempos de respuesta muy lentos. Describa el proceso que seguiría para identificar y resolver el problema, incluyendo el análisis de los planes de ejecución de las consultas y cualquier optimización que considere necesaria.
 
-Se ha detectado que una de las consultas más utilizadas en
-una base de datos PostgreSQL está causando tiempos de
-respuesta muy lentos. Describa el proceso que seguiría para
-identificar y resolver el problema, incluyendo el análisis de los
-planes de ejecución de las consultas y cualquier optimización
-que considere necesaria.
+## Respuesta
 
+Se recibe el caso inicial donde se expresa que una consulta "N" se está demorando mucho en ejecutarse. Lo primero que haría yo sería preguntar cuál es el percentil 90 con el que se debe evaluar los tiempos de respuesta de la consulta. Si este valor ya se conoce y se tiene como un estándar en la compañía, entonces lo que se debería hacer es primero preparar un ambiente de pruebas equivalente al que procesa la consulta.
 
-R/= Se recibe el caso inicial donde se expresa que una consulta "N" se esta demoranto mucho en ejecutarse. lo primero que haria yo seria preguntar cual es el percentil 90, con el que se debe evaluar los tiempos de respuesta de la consulta.
-Si este valor ya se conoce y se tiene como un estandar en la compañia, entonces lo que se deberia hacer es primero preparar un ambiente de pruebas equivalente al que procesa la consulta.
+### Proceso de Identificación y Resolución
 
-Despues de tener el ambiente configuragurado, se lanza la ejecución de la consulta como primera instancia, para evalar dichos tiempos y compararlos con los tiempos de respuesta que se que se requieren ajustar.
+1. **Configuración del Ambiente de Pruebas**: 
+   - Preparar un entorno que simule el ambiente de producción.
 
-Si los tiempos son iguales, parecidos o superiores, entonces se procede con la revisón del scrip o estructura de la consulta, para indentificar las tablas relacionadas y la logia con la cual se diseño la consulta inicial.
+2. **Ejecución Inicial de la Consulta**:
+   - Lanzar la ejecución de la consulta para evaluar los tiempos y compararlos con los requeridos.
 
-Antes de modificar la consulta como tal en el query, verificaria los campos primarios, claves o por los que se estan haciendo realción, posterior a eso verificaria en cada tabla si tiene un indice para cada campo creado, o si este campo puede ser reemplazado en la consulta por uno que si lo tenga.
+3. **Revisión del Script**:
+   - Si los tiempos son iguales, parecidos o superiores, proceder con la revisión del script o estructura de la consulta para identificar las tablas relacionadas y la lógica con la cual se diseñó la consulta inicial.
 
-si da lugar a crear los indices, volveria a lanzar la consulta y verificaria nuevamente los tiempos de respuesta, si mejoran no daria lugar a modificación de la consulta.
+4. **Verificación de Índices**:
+   - Antes de modificar la consulta, verificar los campos primarios y claves. 
+   - Comprobar si cada tabla tiene un índice para cada campo involucrado, o si se puede reemplazar en la consulta por uno que sí lo tenga.
 
-en el caso que no mejore con la creanción o modificación de indices, sugeriria modificar la consulta teniendo encuenta:
+5. **Creación de Índices**:
+   - Si es necesario crear índices, hacerlo y volver a lanzar la consulta para verificar si hay mejora en los tiempos de respuesta. Si mejoran, no se realizarían más modificaciones.
 
-Resucir al maximo el uso de subconsultas con el operador "IN", utilizar JOIN  en lo posible  antes de llegar a las instrucciones WHERE. igualar en el JOIN los datos coincidientes : Join tabla t on t.campo= tabla1.campo AND  t.campo2= tabla1.campo2 , para acotar campos clave a consultar.
+6. **Optimización de la Consulta**:
+   - Si no mejora, considerar modificar la consulta teniendo en cuenta:
+     - Reducir al máximo el uso de subconsultas con el operador `IN`.
+     - Utilizar `JOIN` antes de llegar a las instrucciones `WHERE`.
+     - Igualar en el `JOIN` los datos coincidentes:
+       ```sql
+       JOIN tabla t ON t.campo = tabla1.campo AND t.campo2 = tabla1.campo2
+       ```
 
-luego de optimizada la consulta, se deberia de aislar la ejecución teniendo el cuenta el principio de Isolación de los datos, aun que esto aplica para operaciones de Inserción, Actualización o eliminación ya que se recomienda usar transacciones lo que podemos a hacer en POSTGRE antes de jecutar una consulta para evitar bloqueo en la tabla es colocar "READ COMMITTED" en las consultas.
-        BEGIN;
-            SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-            SELECT * FROM tabla  ( O consulta a evaluar el rendimiento) 
-        COMMIT;
-        
-Tambien durante cada modificación o tunngin de la consulta es recomendable lanzar  "EXPLAIN ANALYZE" cuyo objetivo es lanzar la traza de cada paso de la consulta, para obtener valores de tiempo de respuesta por cada tabla relacionada y asi identificar tambien la que podria estar teniendo problamas de bloqueo por lecturas o transacciones de escritura.
+7. **Aislamiento de la Ejecución**:
+   - Aislar la ejecución teniendo en cuenta el principio de aislamiento de los datos. Para evitar bloqueos, se recomienda usar transacciones en PostgreSQL antes de ejecutar una consulta:
+     ```sql
+     BEGIN;
+         SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+         SELECT * FROM tabla;  -- O consulta a evaluar el rendimiento
+     COMMIT;
+     ```
 
+8. **Uso de `EXPLAIN ANALYZE`**:
+   - Durante cada modificación o tuning de la consulta, ejecutar `EXPLAIN ANALYZE` para obtener la traza de cada paso de la consulta y los tiempos de respuesta por cada tabla relacionada.
 
-Por ultimo segun documentación tecnica de PostgreSQL si la consulta ha mejorado en los tiempos pero necesita mejorar aun mas, se puede considerar ampliar la capacidad del cluster asignando recuros verticales a la instancia:
- work_mem: memoria asignada a cada operación de ordenamiento 
- shared_buffers: cantidad de memoria RAM utilizada para bloques de datos leídos y escritos recientemente.
- maintenance_work_mem_ : Optimiza tareas de mantenimiento
+### Ampliación de Recursos
 
+Si la consulta ha mejorado pero aún necesita optimización, se puede considerar ampliar la capacidad del clúster asignando recursos verticales a la instancia:
+- `work_mem`: memoria asignada a cada operación de ordenamiento.
+- `shared_buffers`: cantidad de memoria RAM utilizada para bloques de datos leídos y escritos recientemente.
+- `maintenance_work_mem`: optimiza tareas de mantenimiento.
 
-Nota: esa ultima configuración no la recomiendo utilizar de manera olimplica, ya que puede incurrir en sobre costos debido a la ampliación de recursos, deberia evaliar el impacto que tendria en la organización un aumento.
+**Nota**: Esta última configuración no se recomienda utilizar de manera indiscriminada, ya que puede incurrir en sobrecostos. Se debe evaluar el impacto que tendría en la organización un aumento en los recursos.
 
 
 
