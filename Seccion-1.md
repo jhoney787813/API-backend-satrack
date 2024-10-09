@@ -41,42 +41,68 @@ En este caso, todos los sensores de la moto envían datos en tiempo real que deb
 
 -----------------------------------------------------------------------
 
-Pregunta 2
+# Pregunta 2
 
-Describa el protocolo de consenso Raft. ¿Cómo garantiza Raft
-la seguridad y la disponibilidad en un sistema distribuido?
-Compare Raft con Paxos en términos de complejidad y casos
-de uso.
+**Describa el protocolo de consenso Raft. ¿Cómo garantiza Raft la seguridad y la disponibilidad en un sistema distribuido? Compare Raft con Paxos en términos de complejidad y casos de uso.**
 
+**R/** En el diseño de sistemas distribuidos, el consenso es una característica clave que permite la obtención de respuestas ágiles sobre algún servicio.
 
-R/= El diseño de sistemas distribuidos el consenso es una característica que prevalece en la implementación de algorirmos que permitan la obtención de respuestas agiles sobre algun servicio.
+Para explicar el protocolo Raft, propongo un entorno cotidiano como el mundo de los videojuegos.
 
-Quisiera proponer en un entorno de la vida cotidiana como lo es el mundo de los videjuegos la explicación en este contexto.
+Imaginemos un juego en línea multijugador donde los jugadores deben colaborar y tomar decisiones conjuntas, como en un juego de estrategia en tiempo real (por ejemplo, "Construye tu imperio"). 
 
-tenemos un juego en línea multijugador donde los jugadores deben colaborar y tomar decisiones conjuntas, como en un juego de estrategia (Construye tu imperio) en tiempo real.
- ¿que necesita para hacer esta toma de disiciones posible?, se necesita implementar un metodo capaz de orqueztar las decisicones de todos los jugadores es aqui donde el protocolo Raft busca asignar papapel como el lider del equipo (Capitan)
-a todos los jugagores conectados denominados (Nodos del sistema), cuando Raft ha elegido el "capitan"  pone a disposición las votaciones de los otros jugadores(Nodos del sistema) pero asegura que el "capitan" tenga la ultima palabra en la toma de desiciones y sincroniza la decición con todos los jugadores.
+## Protocolo Raft
 
-¿Cómo Raft Garantiza Seguridad y Disponibilidad?
+### Funcionamiento
 
-Raft empieza eligiendo un líder entre los nodos (los jugadores). asigna el rol de "capitan" quien es el que toma las decisiones.
+Para que la toma de decisiones sea posible, se necesita un método que organice las decisiones de todos los jugadores. Aquí es donde el protocolo Raft asigna un papel de líder (o "capitán") a uno de los jugadores conectados, denominados nodos del sistema. 
 
-Cada vez que se toma una decisión (como mover tropas o recolectar recursos), por el  "Capitan" (nodo central)   Raft  sincroniza la comunica a los demás, quienes registran esta decisión para que todos tengan el mismo plan de juego.
+Cuando Raft elige al "capitán", pone a disposición las votaciones de los otros jugadores, asegurando que el "capitán" tenga la última palabra en la toma de decisiones y sincronizando esa decisión con todos los jugadores.
 
-Ahora si el "capitan" pierde conexión entonces el algorirmo de "consenso" que implementa Raft, busca entre los otros jugadores de la partida (Nodos del sistema) quien asumira el rol de "capitan" y le cargara las configuraciones y desciones previas tomadas, no acepta  jugadores (Nodos del sistema) que no han sido validados inicial mente.
+### ¿Cómo garantiza Raft la seguridad y la disponibilidad?
 
-la disponibilidad se garantiza ya que esta validando los recustos y la cantidad de jugadores conectados para sincronizar las deciciones y en caso de desconexión de algun jugador(Nodo del sistema)  se asigna un nuevo "capitan".
+1. **Elección de Líder:**
+   - Raft comienza eligiendo un líder entre los nodos (los jugadores). Este líder asume el rol de "capitán", encargado de tomar decisiones.
+
+2. **Sincronización de Decisiones:**
+   - Cada vez que el "capitán" toma una decisión (como mover tropas o recolectar recursos), Raft sincroniza esta decisión con los demás nodos, quienes la registran para mantener un plan de juego coherente.
+
+3. **Manejo de Desconexiones:**
+   - Si el "capitán" pierde conexión, el algoritmo de consenso de Raft busca entre los otros jugadores para elegir un nuevo "capitán", quien recuperará las configuraciones y decisiones previas. No se aceptan nodos que no hayan sido validados inicialmente.
+
+4. **Disponibilidad:**
+   - La disponibilidad se garantiza validando los recursos y la cantidad de jugadores conectados para sincronizar las decisiones. En caso de desconexión de algún jugador, se asigna un nuevo "capitán".
+
+## Comparación con Paxos
+
+- **Complejidad:**
+  - **Raft:** Se considera más fácil de entender y de implementar, ya que descompone el problema del consenso en etapas claras (elección de líder, replicación de log, etc.).
+  - **Paxos:** Es más complejo y menos intuitivo, lo que puede dificultar su implementación y comprensión.
+
+- **Casos de Uso:**
+  - **Raft:** Ideal para aplicaciones donde la facilidad de implementación y comprensión es crucial, como en sistemas de bases de datos y servicios distribuidos que requieren consenso claro.
+  - **Paxos:** Se utiliza en sistemas que requieren un alto grado de robustez y pueden tolerar la complejidad, como en sistemas de almacenamiento distribuido en empresas grandes.
+
 
 ![image](https://github.com/user-attachments/assets/acbd183f-df2c-48ca-bfc4-5f2b988bbf6a)
-Paxos VS Raft
+# Paxos vs Raft
 
-para el caso particular del juego de estrategia que hemos denominado (Construye tu imperio), paxos no seria lo mas adecuado y te voy a explicar por que apesar de ser tambien un protocolo de consenso utilizado en sistemas distribuidos tambien tiene sus escenarios propios de apliación.
+En el caso particular del juego de estrategia que hemos denominado **"Construye tu imperio,"** Paxos no sería lo más adecuado. A continuación, explico por qué, a pesar de ser también un protocolo de consenso utilizado en sistemas distribuidos, tiene sus propios escenarios de aplicación.
 
-Complejidad Alta: Paxos es más complejo que Raft y requiere múltiples rondas de consenso para tomar decisiones. En un juego en tiempo real, esta complejidad puede introducir latencias ya que esta son deando mas veces los (nodos del sistema) para obtener respuestas, retrasando las acciones de los jugadores y afectando la fluidez del juego.
+## Desventajas de Paxos en un Juego de Estrategia
 
-Menor Agilidad en Decisiones: A diferencia de Raft, donde un "Capitán"( nodo principal)  toma decisiones rápidamente, en Paxos cada nodo (jugador) puede proponer una acción, y todos deben ponerse de acuerdo. Esto podría resultar en decisiones más lentas y descoordinadas, lo que no es ideal en un juego de estrategia rápida.
+### 1. Complejidad Alta
+Paxos es más complejo que Raft y requiere múltiples rondas de consenso para tomar decisiones. En un juego en tiempo real, esta complejidad puede introducir latencias, ya que los nodos del sistema deben enviar y recibir múltiples mensajes para obtener respuestas, retrasando así las acciones de los jugadores y afectando la fluidez del juego.
 
-Dificultad de Implementación: Implementar Paxos en un entorno de videojuegos es más complicado debido a la necesidad de gestionar múltiples propuestas simultáneas, lo que aumenta el riesgo de errores y complicaciones técnicas.
+### 2. Menor Agilidad en Decisiones
+A diferencia de Raft, donde un "Capitán" (nodo principal) toma decisiones rápidamente, en Paxos cada nodo (jugador) puede proponer una acción, y todos deben ponerse de acuerdo. Esto podría resultar en decisiones más lentas y descoordinadas, lo que no es ideal en un juego de estrategia rápida.
+
+### 3. Dificultad de Implementación
+Implementar Paxos en un entorno de videojuegos es más complicado debido a la necesidad de gestionar múltiples propuestas simultáneas, lo que aumenta el riesgo de errores y complicaciones técnicas.
+
+## Conclusión
+Por estas razones, Paxos no es la mejor opción para un juego de estrategia en tiempo real como **"Construye tu imperio."** En su lugar, un protocolo como Raft, que ofrece mayor agilidad y simplicidad, sería más adecuado para mantener la fluidez y coordinación del juego.
+
 
 -----------------------------------------------------------------------
 Pregunta 3
