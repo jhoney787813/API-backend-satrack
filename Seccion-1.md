@@ -1,38 +1,42 @@
-Pregunta 1
+# Pregunta 1
 
-Explique el principio de consistencia eventual en bases de
-datos distribuidas. Compare este enfoque con el de
-consistencia fuerte y discuta sus ventajas y desventajas en el
-contexto de aplicaciones de gran escala.
+**Explique el principio de consistencia eventual en bases de datos distribuidas. Compare este enfoque con el de consistencia fuerte y discuta sus ventajas y desventajas en el contexto de aplicaciones de gran escala.**
 
-R/= Empiezo por decir que la cosistencia fuerte  es diferente a la != Consistencia total. 
+**R/** Empiezo por decir que la consistencia fuerte es diferente a la consistencia total.
 
-Para dar respuesta quiero tomar como ejemplo un entorno real basado en el motociclismo de competencia.
+Para dar respuesta, quiero tomar como ejemplo un entorno real basado en el motociclismo de competencia.
 
-Consistencia Eventual:
+## Consistencia Eventual
 
-la consistencia eventual sería como permitir que cada parte de la moto reporte a su propio ritmo, lo cual es útil para análisis de datos a gran escala en tiempos diferentes de inserción de datos. 
+La consistencia eventual se puede comparar con permitir que cada parte de la moto reporte a su propio ritmo. Esto es útil para el análisis de datos a gran escala en diferentes momentos de inserción de datos.
 
-Con  lo anterior podemos complementar que cada equipo de motociclismo tiene sensores en sus motos para monitorear datos como la velocidad,la temperatura del motor y el nivel de combustible.
-Estos datos se envían a una base de datos, pero no todos los sensores están sincronizados al instante. Por ejemplo, el sensor del motor podría enviar datos un segundo después que el sensor de la rueda.
+Cada equipo de motociclismo tiene sensores en sus motos que monitorean datos como la velocidad, la temperatura del motor y el nivel de combustible. Estos datos se envían a una base de datos, pero no todos los sensores están sincronizados al instante. Por ejemplo, el sensor del motor podría enviar datos un segundo después que el sensor de la rueda.
 
-Conclusión: se consolidan todos los datos por cada sensor en la base de datos, pero no en un mismo tiempo ni en una misma transacción.puede no estar completamente sincronizada. A pesar de esta inconsistencia temporal (eventualmente),
-todos los datos son almacenados y al final pueden ser consultados en conjunto.
+**Conclusión:** Se consolidan todos los datos de cada sensor en la base de datos, pero no en el mismo momento ni en la misma transacción. Puede que no estén completamente sincronizados. A pesar de esta inconsistencia temporal (eventualmente), todos los datos son almacenados y, al final, pueden ser consultados en conjunto.
 
+## Consistencia Fuerte
 
+La consistencia fuerte, en cambio, es esencial en situaciones de alta presión donde la exactitud y la sincronización inmediata de la información son cruciales, como en decisiones tácticas durante la carrera.
 
-Consistencia Fuerte:
-La consistencia fuerte, en cambio, es esencial en situaciones de alta presión donde la exactitud y sincronización inmediata de la información son cruciales, como en decisiones tácticas durante la carrera
+En este caso, todos los sensores de la moto envían datos en tiempo real que deben estar sincronizados y ser consistentes al momento de llegar al equipo técnico. Esto es crucial en situaciones donde cada segundo cuenta, como ajustar la estrategia de la carrera basándose en la temperatura exacta del motor en tiempo real. Cada dato debe ser confirmado y sincronizado antes de ser utilizado, asegurando que cualquier información que vea el equipo sea la versión más actualizada y precisa.
 
-Con lo anterior podemos complementar que todos los sensores en la moto envían datos en tiempo real que deben estar sincronizados y ser consistentes al momento de llegar al equipo técnico. Esto es crucial en situaciones donde cada segundo cuenta, como ajustar la estrategia de la carrera basándose en la temperatura exacta del motor en tiempo real. 
-cada dato debe ser confirmado y sincronizado antes de ser utilizado, asegurando que cualquier información que vea el equipo sea la versión más actualizada y precisa.
+## Ventajas y Desventajas
 
-Ventajas y desventajas de ambas:
+### Consistencia Eventual
+- **Ventajas:**
+  - Más flexible y eficiente.
+  - Ideal para análisis posteriores a la carrera, permitiendo la toma de decisiones con datos consolidados.
 
-Consistencia eventual: es más flexible y eficiente en situaciones donde los datos pueden tolerar pequeñas inconsistencias temporales, ideal para análisis  despues de terminada una carrera para toma de desiciones con datos consolidadas.
+- **Desventajas:**
+  - Puede haber inconsistencias temporales en los datos.
 
-Consistencia fuerte: es la mejor opción cuando se necesita precisión absoluta y sincronización en tiempo real, aunque implique un sacrificio en velocidad y escalabilidad.
+### Consistencia Fuerte
+- **Ventajas:**
+  - Ofrece precisión absoluta y sincronización en tiempo real.
+  - Crucial en situaciones donde la inmediatez de la información es vital.
 
+- **Desventajas:**
+  - Sacrifica velocidad y escalabilidad.
 
 
 -----------------------------------------------------------------------
