@@ -141,39 +141,39 @@ FLUJO DE COMUNICACIÓN
 
 # Pregunta 2
 
-Explique cómo implementaría un sistema de control de
-versiones de API para una aplicación que está en producción
-con múltiples clientes. Incluya detalles sobre la gestión de la
-depreciación de versiones antiguas y la migración de los
-clientes a nuevas versiones de la API
+# Implementación de un Sistema de Control de Versiones de API
 
-**R/=** Como no se me pide implementar esta solución en una tecnologia especifica, para dar cumplimiento a este requemiento quiero proponer una altertaiva que hemos utilizado en satrack para este proposito, normalmente la he implementando con .NET
+## Respuesta
 
-Supogamos que la aplicación esta en producción y cuenta con unos endpoints actuales que no puede ser modificados para no afectar los clientes que consumen nuestras apis en sus contratos. lo que hacemos en configurar nos una ruta alternativa  en nuestro swagger para controlar el ruteo a nuestros endpoints nuevos.
+Como no se me pide implementar esta solución en una tecnología específica, quiero proponer una alternativa que hemos utilizado en SatRack para este propósito, normalmente implementada con .NET.
 
-Ahora, como normalmente en nuestras desarrollos tratamos de depender de abstracciones e implementaciones me diante interfaces. esto es un punto favorable y a tener encuenta pues una tactica que podemos utilizar es se pasarar nuestros controladores por versiones 
-si lo que ha cambiado es el contrado de entrada, pero si se requiere cambiar las reglas de negocio para un endpoint nuevo conservando las actuales, entonces  podemos crear una distribución de nuestra capa de negocio (Rules,Core y/O Domain) de tal manera que se agregen nuevas implentaciones por version de las capacidades de negocio y esto no afecta el flujo actual que se usan en los clientes que consumen el api.
+Supongamos que la aplicación está en producción y cuenta con unos endpoints actuales que no pueden ser modificados para no afectar a los clientes que consumen nuestras APIs en sus contratos. Lo que hacemos es configurar una ruta alternativa en nuestro Swagger para controlar el ruteo a nuestros nuevos endpoints.
 
-ahora  ¿como podemos manejar la estrategia de deprecación?
+### Estrategia de Control de Versiones
 
-definir la fecha limite maximo que los clientes tendran disponibles el soporte de versiones ante errores. 
+Normalmente, en nuestros desarrollos tratamos de depender de abstracciones e implementaciones mediante interfaces. Esto es un punto favorable y a tener en cuenta. Una táctica que podemos utilizar es pasar nuestros controladores por versiones si lo que ha cambiado es el contrato de entrada. 
 
-teniendo las nuevas versiones funcionales y las actuales operativas, se puede generar  un comunicado a nivel interno de la organización informando la deprecación de los enpoint actuales y pasar el listado con los cambios y la forma de consumir los nuevos endpoints.
+Si se requiere cambiar las reglas de negocio para un endpoint nuevo conservando las actuales, entonces podemos crear una distribución de nuestra capa de negocio (Rules, Core y/o Domain) de tal manera que se agreguen nuevas implementaciones por versión de las capacidades de negocio, y esto no afecte el flujo actual que utilizan los clientes que consumen la API.
 
-ahora, si por el contrario no es posible que los clientes se migren a la nueva versión debido a el impacto que tendria en implementar el cambio del DNS o rutas de las apis, se podria considerar implementar en los endpoints a deprecar una redirección temporal de recursos hacia los nuevos endpoint, pero se debe analizar si los contratos de entrada de las peticiones de los endpoints viejos son aplicables o soportados por las nuevas versiones para hacer esta redirección. de no ser asi se deberia de rechazar las peticiones entrantes a los endpoints viejos e informar mediante status responce el codigo y mensaje apropiado para informar que el endpoint o api se ha deprecado.
+### Manejo de la Estrategia de Deprecación
 
+1. **Definición de la Fecha Límite**: Definir la fecha límite máxima que los clientes tendrán disponible el soporte de versiones ante errores.
 
-PROPUESTA ALTERNA
+2. **Comunicación Interna**: Teniendo las nuevas versiones funcionales y las actuales operativas, se puede generar un comunicado a nivel interno de la organización informando la deprecación de los endpoints actuales y pasando un listado con los cambios y la forma de consumir los nuevos endpoints.
 
-Actualmente en la compañia se esta implementando APISIX , esto que ayuda precisamente a ser mas proactivos en la gestión de los accesos ya que este permite orquestar y canalizar las peticiones HTTP sobre los diferentes recursos de la compañia pues es nuestro principal Gateway.
+3. **Redirección Temporal**: Si no es posible que los clientes se migren a la nueva versión debido al impacto que tendría implementar el cambio de DNS o rutas de las APIs, se podría considerar implementar en los endpoints a deprecar una redirección temporal de recursos hacia los nuevos endpoints. 
 
-con APISIX podemos tambien implementar la deprecación de versiónes de un api.
+   - **Análisis de Contratos**: Se debe analizar si los contratos de entrada de las peticiones de los endpoints viejos son aplicables o soportados por las nuevas versiones para hacer esta redirección. De no ser así, se deberían rechazar las peticiones entrantes a los endpoints viejos e informar mediante un status response el código y mensaje apropiado para informar que el endpoint o API se ha deprecado.
 
-podemos definir la redirección de peticiones, me diante los dns para guiar a los usuarios de versiones antiguas hacia versiones nuevas o usa mensajes de depreciación para informar a los clientes sobre versiones obsoletas.
+### Propuesta Alterna
 
-Hoy en satrack hemos implementado este mecanisco de redirección sobre los recursos de múltiples APIs para que se reduzca que cada que se cambie la implementación sobre el back, los clientes tengan que actualizar las rutas a los nuevos endpoint, esto facilita la mantenibilidad ya que los clientes siempre se conectan a un mismo DNS o url para realizar las peticiones.
+Actualmente, en la compañía se está implementando **APISIX**, lo cual ayuda a ser más proactivos en la gestión de los accesos, ya que permite orquestar y canalizar las peticiones HTTP sobre los diferentes recursos de la compañía, funcionando como nuestro principal Gateway.
 
+Con APISIX, podemos también implementar la deprecación de versiones de una API:
 
+- **Redirección de Peticiones**: Podemos definir la redirección de peticiones mediante los DNS para guiar a los usuarios de versiones antiguas hacia versiones nuevas o usar mensajes de deprecación para informar a los clientes sobre versiones obsoletas.
+
+Hoy en SatRack hemos implementado este mecanismo de redirección sobre los recursos de múltiples APIs, de manera que cada vez que se cambie la implementación sobre el backend, los clientes no tengan que actualizar las rutas a los nuevos endpoints. Esto facilita la mantenibilidad, ya que los clientes siempre se conectan a un mismo DNS o URL para realizar las peticiones.
 
 -----------------------------------------------------------------------
 # Pregunta 3
