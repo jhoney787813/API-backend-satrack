@@ -75,7 +75,9 @@ ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instanci
 Para verifica el resultado de las cosultas podemos utilizar esta pagina: ( https://www.mycompiler.io/es/new/mysql ) pegamos los scrips y probamos los resultados de la consulta
 
 Script de tablas
+**Create**
 
+   ```sql
                 CREATE TABLE Usuarios (
                     id INT AUTO_INCREMENT PRIMARY KEY,      
                     nombre VARCHAR(100) NOT NULL,           
@@ -99,9 +101,11 @@ Script de tablas
                     FOREIGN KEY (usuario_id1) REFERENCES Usuarios(id),
                     FOREIGN KEY (usuario_id2) REFERENCES Usuarios(id)  
                 );
+   ```
 
-insert
+**Insert**
 
+   ```sql
                         INSERT INTO Usuarios (nombre, email, contrasena)
                         VALUES 
                         ('Alex', 'alex@satrack.es', 'Alexpassword123'),
@@ -141,47 +145,46 @@ insert
                 (8, 9, NOW() - INTERVAL 4 MONTH), 
                 (10, 1, NOW() - INTERVAL 100 DAY); 
 
-
+   ```
 **Resultados de nuestro ejemplo:**
 
 ![image](https://github.com/user-attachments/assets/83747342-f868-42a2-8289-8a8b7b9767ed)
 
 **Conclusión:** para nuestro caso ya que no se especifica una necesidad a suplir mas alla del requerimiento inicial de consultar por rangos de una semana las ultimas publicaciones, vemos que las consultas que se hacen no tienen variación de resultados y los tiempos de respuesta son parecedidos, esto puede variar si se utiliza exponencialmente la tabla a nivel de transacciones para las *"Publicaciones"*, por lo que yo aconejaria utilizar ejemplo incial de aislar las transacciones en este caso las consultas con *"SESSION TRANSACTION ISOLATION"* si se utiliza my sql o para sql server utilizar "with nolock" en las consultas donde se requiera evitar bloqueos.
 ____________________________________________________________
-Pregunta 2
+# Pregunta 2
 
-Implemente una API RESTful en Node.js utilizando Express que
-permita a los usuarios registrarse, iniciar sesión y publicar
-mensajes. Las rutas requeridas son:
-1.Registro de usuarios (POST /register)
-2.Inicio de sesión (POST /login)
-3.Publicar un mensaje (POST /messages)
-Asegúrese de incluir validaciones, manejo de errores y
-autenticación basada en tokens JWT. Proporcione pruebas
-unitarias para cada endpoint.
+Implemente una API RESTful en Node.js utilizando Express que permita a los usuarios registrarse, iniciar sesión y publicar mensajes. Las rutas requeridas son:
 
-R/= Se incluye en repositorio la carpeta con el api nodejs
-que contiene lo siguiente: https://github.com/jhoney787813/API-backend-satrack/tree/main/api-nodejs-supabase-satrack
+1. **Registro de usuarios** (`POST /register`)
+2. **Inicio de sesión** (`POST /login`)
+3. **Publicar un mensaje** (`POST /messages`)
 
-Se me pidio raliza la APi en node js,pero no se me espeficica que patron o tacticas utilizar para el desarrollo de esta api, sin embargo plantee lo siguiente:
+Asegúrese de incluir validaciones, manejo de errores y autenticación basada en tokens JWT. Proporcione pruebas unitarias para cada endpoint.
 
-Yo Utilizo una arquitectura limpia basada (Clean Architecture) aunque no aplica 100% todos los conceptos debido a su bajo nivel de baja complejidad del ejercicio, ya que nos permite escalar una aplicación y nos promueve la extensión y mantenibilidad de la misma, donde tambien se tienen en cuenta los principios SOLID.
+## Respuesta
 
-para mi esto es lo fundamental de esta implementación del api node.js
+Se incluye en el repositorio la carpeta con la API Node.js que contiene lo siguiente: [API-backend-satrack](https://github.com/jhoney787813/API-backend-satrack/tree/main/api-nodejs-supabase-satrack)
 
-Ayuda a separar la lógica de negocio de la lógica de presentación.
-Permite una mayor flexibilidad y escalabilidad.
-Facilita la mantenibilidad y el desarrollo de la aplicación.
-Reduce la complejidad y la cantidad de código.
-Mejora la legibilidad y la comprensión del código. yo he querido plasmar con esta pequeña aplicación el patrón de diseño "Clean Architecture", ya que se basa en la separación de concerns (preocupaciones) y la utilización de interfaces para comunicar entre los diferentes capas de la aplicación. dando como resultado una distribución logia entre componentes y carpetas, sin embargo tambien puede ser planteada en paquetes externos a el proyecto, para mayor modularidad.
+Se me pidió realizar la API en Node.js, pero no se especificó qué patrón o tácticas utilizar para el desarrollo de esta API. Sin embargo, planteé lo siguiente:
 
-Una vez corriendo el proyeto con el comando "npm start" abre tu navegador y ingresa  http://localhost:5000/api-docs para ver la documentación con swagger que se adiciono.
+Utilizo una **arquitectura limpia** (Clean Architecture), aunque no aplica al 100% todos los conceptos debido a la baja complejidad del ejercicio. Esta arquitectura permite escalar una aplicación y promueve la extensión y mantenibilidad de la misma, teniendo en cuenta también los principios SOLID.
 
-Implementación de SWAGGER
+### Fundamentos de la Implementación de la API Node.js
+
+- **Separación de la lógica de negocio y presentación**: Ayuda a separar la lógica de negocio de la lógica de presentación.
+- **Flexibilidad y escalabilidad**: Permite una mayor flexibilidad y escalabilidad.
+- **Mantenibilidad**: Facilita la mantenibilidad y el desarrollo de la aplicación.
+- **Reducción de complejidad**: Reduce la complejidad y la cantidad de código.
+- **Mejora de legibilidad**: Mejora la legibilidad y comprensión del código.
+
+He querido plasmar con esta pequeña aplicación el patrón de diseño "Clean Architecture", ya que se basa en la separación de preocupaciones y la utilización de interfaces para comunicar entre las diferentes capas de la aplicación, dando como resultado una distribución lógica entre componentes y carpetas. Sin embargo, también puede ser planteada en paquetes externos al proyecto para mayor modularidad.
+
+Una vez que el proyecto esté corriendo con el comando `npm start`, abre tu navegador e ingresa [http://localhost:5000/api-docs](http://localhost:5000/api-docs) para ver la documentación con Swagger que se adicionó.
+
+## Implementación de Swagger
 
 ![image](https://github.com/user-attachments/assets/f1bc85b7-ff64-40bc-b25c-dd8148c8bfe3)
-
-
 
 Con la siguiente estructura doy cumplimiento 
 
@@ -210,10 +213,6 @@ Con la siguiente estructura doy cumplimiento
             └── package.json
 
 
-
-
-
-
 Contenido de archivos
 ![image](https://github.com/user-attachments/assets/f4849525-9b4b-43ba-a556-94763de682e8)
 ![image](https://github.com/user-attachments/assets/bbef1d3f-bbfe-46a1-9c77-74eb625e2b6d)
@@ -229,8 +228,6 @@ Contenido de archivos
 ![image](https://github.com/user-attachments/assets/595de9c1-0eda-4bfb-b495-e2fe1f5ca89c)
 ![image](https://github.com/user-attachments/assets/73888380-b950-4d91-a8e1-e07620884c10)
 ![image](https://github.com/user-attachments/assets/6a5c21aa-701c-49ec-9475-97410b8e8c54)
-
-
 
 ____________________________________________________________
 
