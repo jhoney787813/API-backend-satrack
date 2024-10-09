@@ -105,35 +105,50 @@ Por estas razones, Paxos no es la mejor opción para un juego de estrategia en t
 
 
 -----------------------------------------------------------------------
-Pregunta 3
+# Pregunta 3
 
-Discuta las diferencias entre el escalado vertical y el escalado
-horizontal en sistemas backend. Proporcione ejemplos
-específicos de cuándo utilizaría cada enfoque y cómo afectaría
-esto la arquitectura del sistema.
+**Discuta las diferencias entre el escalado vertical y el escalado horizontal en sistemas backend. Proporcione ejemplos específicos de cuándo utilizaría cada enfoque y cómo afectaría esto la arquitectura del sistema.**
 
-R/= Tenemos un restaurante con renombre y muy visitado con (Alta concurrencia), el espacio donde se sientan los clientes es amplio y con una capacidad para "100" personas a la vez, sin emgargo la cocina solo tiene capacidad para
-personal y recursos suficientes como para preparar 25 platos a la vez.
+**R/** Imaginemos un restaurante de renombre y muy visitado, con alta concurrencia. El espacio para sentar a los clientes es amplio y tiene una capacidad para 100 personas a la vez, pero la cocina solo puede preparar 25 platos a la vez debido a limitaciones de personal y recursos.
 
-¿que se puede hacer para preparas los 100 platos a la vez?
+## Escalado Vertical
 
-Es aqui como podemos aplicar el escalado vertical: que implica hacer una remodelación sobre la cocina  para amplicar su espacio, adicionando mas herramientas, enseres ,y/o personal. aprovechando la capacidad maxima de la concina. sin tener que
-cambiar a un local nuevo o locación diferente del resurante. pero puede existir el riesgo que llegas un punto en que no puedes meter más cosas ni personas con la nueva ampliación de la cocina sin que se vuelva un caos.  la eficiencia se reduce porque los cocineros empiezan a estorbarse entre sí y los costos aumentan. 
+Para poder preparar 100 platos a la vez, podemos aplicar el **escalado vertical**, que implica remodelar la cocina para ampliar su espacio, añadiendo más herramientas, enseres y/o personal. Esto permite aprovechar al máximo la capacidad de la cocina sin necesidad de cambiar de local. 
 
-la cacapidad del restaurante es 100 personas a la vez y el dueño quiere atentder a 400 personas el simultaneo debido a que ha crecido exponencialmente el numero de clientes que lo visitan en simultaneo ¿ que deberia hacer para lograr esto?
+### Ventajas:
+- No requiere cambiar de ubicación.
+- Mejora la capacidad de producción.
 
-Es aqui como podemos aplicar el escalado Horizontal: para conservar en funcionamiento la sede actual con la que inicio el restaurante (Local) se sugiere al dueño tomar el local del lado y utilizar el espacio necesario para atender la diferencia de personas para este caso 300 personas en el segundo local y 100 en el primero. para esto debe remodelar el segundo local para crear una nueva cocina dotada  de mas herramientas, enseres ,y/o personal. para lo grar la atención a las otras personas en simultaneo. Cada cocina se encarga de una parte de los pedidos y se distribuye mejor el trabajo.
+### Desventajas:
+- Existe un límite en cuanto a cuántas mejoras se pueden hacer antes de que la cocina se vuelva caótica, ya que los cocineros podrían estorbarse entre sí.
+- Los costos aumentan con cada mejora.
 
-Ahora orientados al el desarrollo desarrollo de software , ¿cuándo utilizaría cada enfoque?
+## Escalado Horizontal
 
-Cuando necesitas una solución inmediata para mejorar el rendimiento, sin necesidad de reconfigurar todo el sistema el escalado vertical implica mejorar la capacidad del servidor donde se ejecuta tu aplicación agregando más recursos (más memoria RAM, más CPU, mejor almacenamiento), esto tiene un limite maximo ya que dependemos de la capacidad del servidor
-sea dedicado, virtualizado o fisico.
+Si el dueño del restaurante desea atender a 400 personas simultáneamente debido a un aumento exponencial en la clientela, podría aplicar el **escalado horizontal**. Esto implicaría tomar el local de al lado y remodelarlo para crear una nueva cocina con más herramientas, enseres y personal.
 
-Si necesitas que tu sistema esté siempre disponible, incluso si uno de los servidores falla el tiempo de inactividad no es una opción. El escalado horizontal implica agregar más servidores y distribuir el trabajo entre ellos. Es decir varias replicas de tu aplicación funcionando de manera independiente, con posibilidad de compartir y distribuir se la carga de trabajo entre ellas.
+### Ejemplo:
+- El primer local sigue atendiendo a 100 personas, mientras que el segundo local se encarga de 300 personas. Cada cocina puede gestionar una parte de los pedidos, distribuyendo mejor el trabajo.
 
-¿cómo afectaría esto la arquitectura del sistema?
-Escalado Vertical: Ideal para aplicaciones más simples y con tráfico controlado, con una arquitectura que no necesita cambios drásticos, pero con un límite en el crecimiento.
-Escalado Horizontal: Mejor para aplicaciones grandes y con crecimiento rápido, con una arquitectura más compleja, pero mucho más escalable y resiliente.
+## Enfoques en el Desarrollo de Software
+
+### Escalado Vertical
+- **Cuándo utilizar:** Cuando necesitas una solución inmediata para mejorar el rendimiento sin reconfigurar todo el sistema. Implica mejorar la capacidad del servidor donde se ejecuta tu aplicación (más RAM, CPU, mejor almacenamiento).
+- **Límites:** Dependes de la capacidad máxima del servidor (dedicado, virtualizado o físico).
+
+### Escalado Horizontal
+- **Cuándo utilizar:** Cuando necesitas que tu sistema esté siempre disponible, incluso si uno de los servidores falla. Implica agregar más servidores y distribuir el trabajo entre ellos.
+- **Ventajas:** Varias réplicas de tu aplicación funcionan de manera independiente, permitiendo compartir y distribuir la carga de trabajo.
+
+## Impacto en la Arquitectura del Sistema
+
+### Escalado Vertical
+- **Ideal para:** Aplicaciones más simples y con tráfico controlado.
+- **Arquitectura:** No necesita cambios drásticos, pero tiene un límite en el crecimiento.
+
+### Escalado Horizontal
+- **Mejor para:** Aplicaciones grandes y de rápido crecimiento.
+- **Arquitectura:** Más compleja, pero ofrece escalabilidad y resiliencia a largo plazo.
 
 
 
