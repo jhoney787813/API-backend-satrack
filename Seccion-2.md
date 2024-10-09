@@ -16,9 +16,10 @@ Para responder a esta pregunta, asumimos que no se especifica a profundidad la e
 **¿Existen índices creados en los campos clave?**
 
 
-*Si la respuesta **no:*** 
+**Si la respuesta no:** 
 
 primero consideraria una subconsulta para enlazar las tablas por los campos: usuario_id2, usuario_id1,fecha_amistad
+
    ```sql
                SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
                 FROM Publicaciones p
@@ -32,13 +33,12 @@ primero consideraria una subconsulta para enlazar las tablas por los campos: usu
                     WHERE a.usuario_id1 = 1 OR a.usuario_id2 = 1
                 )
                 AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
-
-    ```
-*Si la respuesta es **sí:***
+```
+**Si la respuesta es sí:**
 
 y existen indices para lo campos  usuario_id2, usuario_id1,fecha_amistad. esto nos ahorria tiempo de procesamiento y podriamos inlcuso aprovechas las capacidades de la instrucción "JOIN" de sql
 
-```sql
+ ```sql
                  SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
                 FROM Publicaciones p
                 JOIN Amigos a 
@@ -76,6 +76,7 @@ ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instanci
 Para verifica el resultado de las cosultas podemos utilizar esta pagina: ( https://www.mycompiler.io/es/new/mysql ) pegamos los scrips y probamos los resultados de la consulta
 
 Script de tablas
+
 **Create**
 
 ```sql
@@ -287,10 +288,3 @@ Si la consulta ha mejorado pero aún necesita optimización, se puede considerar
 - `maintenance_work_mem`: optimiza tareas de mantenimiento.
 
 **Nota**: Esta última configuración no se recomienda utilizar de manera indiscriminada, ya que puede incurrir en sobrecostos. Se debe evaluar el impacto que tendría en la organización un aumento en los recursos.
-
-
-
-
-
-
-
