@@ -1,20 +1,24 @@
 
-Pregunta 1
+# Pregunta 1
 
-Dado el siguiente esquema de base de datos para una
-aplicación de red social:
-Usuarios (id, nombre, email, contraseña)
-Publicaciones (id, usuario_id, contenido, fecha_publicacion)
-Amigos (id, usuario_id1, usuario_id2, fecha_amistad)
-Escriba una consulta SQL para obtener las publicaciones de
-los amigos de un usuario específico (por ejemplo, usuario_id =1)
-realizadas en la última semana.
+Dado el siguiente esquema de base de datos para una aplicación de red social:
 
-R/= para responder esta pregunta digamos que no se espeficica a profundida la estructura con sus tipos de datos ya creada de la bd de red social por lo que quiero
-dejar la siguiente premisa: ¿existen indices creados en los campos clave?
+- **Usuarios** `(id, nombre, email, contraseña)`
+- **Publicaciones** `(id, usuario_id, contenido, fecha_publicacion)`
+- **Amigos** `(id, usuario_id1, usuario_id2, fecha_amistad)`
+
+Escriba una consulta SQL para obtener las publicaciones de los amigos de un usuario específico (por ejemplo, `usuario_id = 1`) realizadas en la última semana.
+
+## Respuesta
+
+Para responder a esta pregunta, asumimos que no se especifica a profundidad la estructura con sus tipos de datos ya creados de la base de datos de la red social. Por lo tanto, quiero dejar la siguiente premisa:
+
+**¿Existen índices creados en los campos clave?**
 
 
-Si la respuesta no: primero consideraria una subconsulta para enlazar las tablas por los campos: usuario_id2, usuario_id1,fecha_amistad
+*Si la respuesta **no:*** 
+
+primero consideraria una subconsulta para enlazar las tablas por los campos: usuario_id2, usuario_id1,fecha_amistad
 
                SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
                 FROM Publicaciones p
@@ -30,8 +34,10 @@ Si la respuesta no: primero consideraria una subconsulta para enlazar las tablas
                 AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
 
 
-Si la respuesta es sí: y existen indices para lo campos  usuario_id2, usuario_id1,fecha_amistad. esto nos ahorria tiempo de procesamiento y podriamos inlcuso aprovechas las capacidades de la instrucción "JOIN" de sql
+*Si la respuesta es **sí:***
 
+y existen indices para lo campos  usuario_id2, usuario_id1,fecha_amistad. esto nos ahorria tiempo de procesamiento y podriamos inlcuso aprovechas las capacidades de la instrucción "JOIN" de sql
+            ```sql
                  SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
                 FROM Publicaciones p
                 JOIN Amigos a 
@@ -40,13 +46,15 @@ Si la respuesta es sí: y existen indices para lo campos  usuario_id2, usuario_i
                   AND p.usuario_id != 1
                   AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
 
+              ```
 
 
-
-Importante: si se utiliza sql server utilizar la instruccion "with nolock" para evitar bloqueo en las transacciones.
+**Importante:** si se utiliza sql server utilizar la instruccion "with nolock" para evitar bloqueo en las transacciones.
 si se utiliza my sql como en este caso se puede utilizar
 
 ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instancia que lanza la consulta
+             
+              ```sql
               SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED ;
               
                 SELECT p.id, p.usuario_id, p.contenido, p.fecha_publicacion
@@ -63,7 +71,7 @@ ejemplo: para encapsular nuestro codigo a nivel de lectura solo para la instanci
                          AND p.fecha_publicacion >= NOW() - INTERVAL 1 WEEK;
                          
               SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ ;
-
+            ```
 Para verifica el resultado de las cosultas podemos utilizar esta pagina: ( https://www.mycompiler.io/es/new/mysql ) pegamos los scrips y probamos los resultados de la consulta
 
 Script de tablas
@@ -134,11 +142,11 @@ insert
                 (10, 1, NOW() - INTERVAL 100 DAY); 
 
 
-Resultados de nuestro ejemplo:
+**Resultados de nuestro ejemplo:**
 
 ![image](https://github.com/user-attachments/assets/83747342-f868-42a2-8289-8a8b7b9767ed)
 
-Conclusión: para nuestro caso ya que no se especifica una necesidad a suplir mas alla del requerimiento inicial de consultar por rangos de una semana las ultimas publicaciones, vemos que las consultas que se hacen no tienen variación de resultados y los tiempos de respuesta son parecedidos, esto puede variar si se utiliza exponencialmente la tabla a nivel de transacciones para las "Publicaciones", por lo que yo aconejaria utilizar ejemplo incial de aislar las transacciones en este caso las consultas con "SESSION TRANSACTION ISOLATION " si se utiliza my sql o para sql server utilizar "with nolock" en las consultas donde se requiera evitar bloqueos.
+**Conclusión:** para nuestro caso ya que no se especifica una necesidad a suplir mas alla del requerimiento inicial de consultar por rangos de una semana las ultimas publicaciones, vemos que las consultas que se hacen no tienen variación de resultados y los tiempos de respuesta son parecedidos, esto puede variar si se utiliza exponencialmente la tabla a nivel de transacciones para las *"Publicaciones"*, por lo que yo aconejaria utilizar ejemplo incial de aislar las transacciones en este caso las consultas con *"SESSION TRANSACTION ISOLATION"* si se utiliza my sql o para sql server utilizar "with nolock" en las consultas donde se requiera evitar bloqueos.
 ____________________________________________________________
 Pregunta 2
 
