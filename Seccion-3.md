@@ -1,131 +1,98 @@
 # Pregunta 1
 
-Diseñe un sistema de mensajería en tiempo real para una
-aplicación de chat. El sistema debe soportar la entrega de
-mensajes a millones de usuarios simultáneamente. Describa
-la arquitectura, los componentes clave (como servidores de
-mensajería, bases de datos, etc.), y cómo manejaría la
-escalabilidad y la tolerancia a fallos.
+# Diseño de un Sistema de Mensajería en Tiempo Real para una Aplicación de Chat
 
-**R/=** Propongo un diseño de un sistema de mensajería en tiempo real para una aplicación de chat, aplicando parte de los conceptos de la metodología WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y de los usuarios.
+## Respuesta
 
-**¿Por qué necesitamos un sistema de mensajería en tiempo real para una aplicación de chat?**
+Propongo un diseño de un sistema de mensajería en tiempo real para una aplicación de chat, aplicando parte de los conceptos de la metodología **WHY DRIVEN DESIGN** para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y de los usuarios.
+
+### ¿Por qué necesitamos un sistema de mensajería en tiempo real para una aplicación de chat?
 
 Porque permitir una comunicación instantánea entre usuarios mejora la experiencia, aumenta la interactividad y es fundamental para cualquier aplicación moderna de chat que busque mantenerse competitiva y relevante.
 
-**¿Qué componentes necesitamos para un sistema de mensajería en tiempo real?**
+### ¿Qué componentes necesitamos para un sistema de mensajería en tiempo real?
 
-Servidores de mensajería en tiempo real (SignalR): 
+- **Servidores de mensajería en tiempo real (SignalR)**: 
+  - Para manejar la comunicación bidireccional y en tiempo real entre clientes y servidores.
 
-    Para manejar la comunicación bidireccional y en tiempo real entre clientes y servidores.
-
-Microservicios: 
-
-    Para gestionar la lógica de negocio como el manejo de usuarios, autenticación, y la entrega de mensajes.
+- **Microservicios**: 
+  - Para gestionar la lógica de negocio, como el manejo de usuarios, autenticación y la entrega de mensajes.
   
-Message Broker (RabbitMQ o Kafka): 
+- **Message Broker (RabbitMQ o Kafka)**: 
+  - Para desacoplar la producción y consumo de mensajes y garantizar la entrega confiable.
 
-    Para desacoplar la producción y consumo de mensajes y garantizar la entrega confiable.
+- **Base de Datos (NoSQL y SQL)**: 
+  - Para almacenar la información estructurada (usuarios, contactos) y no estructurada (mensajes).
 
-Base de Datos (NoSQL y SQL): 
+- **Cache (Redis)**: 
+  - Para acelerar el acceso a datos frecuentemente solicitados, como sesiones y mensajes recientes.
 
-    Para almacenar la información estructurada (usuarios, contactos) y no estructurada (mensajes).
+- **Balanceadores de carga**: 
+  - Para distribuir la carga entre las instancias del sistema.
 
-Cache (Redis): 
+- **Monitoreo y alertas**: 
+  - Para asegurar la disponibilidad y el rendimiento del sistema.
 
-    Para acelerar el acceso a datos frecuentemente solicitados, como sesiones y mensajes recientes.
+### ¿Qué opciones tenemos para los servidores de mensajería en tiempo real y cuál es la más adecuada?
 
-Balanceadores de carga: 
+- **SignalR**:
+  - Proporciona una capa de abstracción sobre WebSockets, Long Polling y Server-Sent Events.
+  - Integración nativa con .NET, ideal para aplicaciones basadas en ASP.NET Core.
+  - Escalabilidad mediante Redis para gestionar conexiones distribuidas.
 
-    Para distribuir la carga entre las instancias del sistema.
+- **WebSockets Puro**:
+  - Menor sobrecarga en comparación con SignalR pero requiere más desarrollo personalizado.
+  - Mayor control sobre la implementación y rendimiento.
 
-Monitoreo y alertas: 
-
-    Para asegurar la disponibilidad y el rendimiento del sistema.
-
-
-**¿Qué opciones tenemos para los servidores de mensajería en tiempo real y cuál es la más adecuada?**
-
-SignalR vs WebSockets Puro vs Servicios de Terceros (Pusher, PubNub)
-
-SignalR:
-
-Proporciona una capa de abstracción sobre WebSockets, Long Polling y Server-Sent Events.
-Integración nativa con .NET, ideal para aplicaciones basadas en ASP.NET Core.
-Escalabilidad mediante Redis para gestionar conexiones distribuidas.
-
-WebSockets Puro:
-
-Menor sobrecarga en comparación con SignalR pero requiere más desarrollo personalizado.
-Mayor control sobre la implementación y rendimiento.
-
-Servicios de Terceros (Pusher, PubNub):
-
-Simplifican la implementación con SDKs y servicios administrados, pero pueden ser costosos y limitar el control.
+- **Servicios de Terceros (Pusher, PubNub)**:
+  - Simplifican la implementación con SDKs y servicios administrados, pero pueden ser costosos y limitar el control.
 
 **¿Cuál es la más adecuada?**
 
 SignalR es la elección ideal por su integración nativa con ASP.NET Core, soporte para escalabilidad y manejo sencillo de múltiples transportes en caso de que WebSockets no esté disponible.
 
+### ¿Qué opciones existen para gestionar los mensajes y cuál es la más adecuada?
 
-**¿Qué opciones existen para gestionar los mensajes y cuál es la más adecuada?**
+- **RabbitMQ**:
+  - Fácil de configurar y excelente para sistemas con baja latencia y volumen moderado de mensajes.
+  - Soporta diversas estrategias de reintento y confirmación de mensajes.
 
-RabbitMQ vs Kafka
-
-RabbitMQ:
-
-    Fácil de configurar y excelente para sistemas con baja latencia y volumen moderado de mensajes.
-    
-    Soporta diversas estrategias de reintento y confirmación de mensajes.
-
-Kafka:
-
-    Altamente escalable y diseñado para manejar millones de mensajes por segundo.
-    
-    Ideal para aplicaciones con un alto volumen de tráfico y la necesidad de procesamiento de eventos en tiempo real.
-    
-**¿Cuál es la más adecuada?**
-
-Kafka es más adecuado para una aplicación de mensajería en tiempo real que requiere alta escalabilidad y capacidad para manejar grandes volúmenes de mensajes simultáneamente debido a su costo de implementación ya que al ser opensource se puede tener un servicio propio y administrable en una red interna y externa.
-
-
-**¿Qué opciones de almacenamiento existen para mensajes y cuál es la más adecuada?**
-
-Bases de Datos NoSQL (MongoDB, CosmosDB) vs SQL (PostgreSQL, SQL Server, MySQL)
-
-NoSQL (MongoDB, CosmosDB, MongoDB Atlas):
-
-    Escalabilidad horizontal y flexibilidad en el manejo de grandes volúmenes de mensajes.
-
-    No requieren esquemas rígidos, lo que facilita el manejo de datos no estructurados como los mensajes.
-
-SQL (PostgreSQL, SQL Server,MySQL):
-
-    Implementan principios ACID que aseguran transacciones seguras y datos estructurados.
-
-    Mayor integridad referencial, pero con menos flexibilidad y escalabilidad para datos no estructurados.
+- **Kafka**:
+  - Altamente escalable y diseñado para manejar millones de mensajes por segundo.
+  - Ideal para aplicaciones con un alto volumen de tráfico y la necesidad de procesamiento de eventos en tiempo real.
 
 **¿Cuál es la más adecuada?**
 
-Para nuestro caso debido a la alta concurrencia y velocidad con que se debe proveer la información la alternativa mas eficiente para este caso  seria NoSQL, debido a su capacidad para manejar grandes volúmenes de mensajes y flexibilidad en la estructura de datos.
+Kafka es más adecuado para una aplicación de mensajería en tiempo real que requiere alta escalabilidad y capacidad para manejar grandes volúmenes de mensajes simultáneamente, debido a su costo de implementación; al ser open-source, se puede tener un servicio propio y administrable en una red interna y externa.
 
-¿Cómo manejar la escalabilidad y tolerancia a fallos?
+### ¿Qué opciones de almacenamiento existen para mensajes y cuál es la más adecuada?
 
-Escalabilidad
+- **Bases de Datos NoSQL (MongoDB, CosmosDB)**:
+  - Escalabilidad horizontal y flexibilidad en el manejo de grandes volúmenes de mensajes.
+  - No requieren esquemas rígidos, lo que facilita el manejo de datos no estructurados como los mensajes.
 
-    Implementar múltiples instancias de microservicios y SignalR, balanceadas mediante un balanceador de carga.
-    
-    Redis utilizado como backplane para SignalR facilita la sincronización entre servidores distribuidos.
+- **SQL (PostgreSQL, SQL Server, MySQL)**:
+  - Implementan principios ACID que aseguran transacciones seguras y datos estructurados.
+  - Mayor integridad referencial, pero con menos flexibilidad y escalabilidad para datos no estructurados.
 
-Tolerancia a fallos
+**¿Cuál es la más adecuada?**
 
-    Podemos user Message Brokers como Kafka para asegurar la entrega y retransmisión de mensajes.
-    
-    Replicación y backup en bases de datos y Redis Cache para asegurar la disponibilidad y evitar pérdida de datos.
+Para nuestro caso, debido a la alta concurrencia y velocidad con la que se debe proveer la información, la alternativa más eficiente sería NoSQL, debido a su capacidad para manejar grandes volúmenes de mensajes y flexibilidad en la estructura de datos.
 
-**¿Por qué Redis es la seleccionada en esta arquitectura?**
+### ¿Cómo manejar la escalabilidad y tolerancia a fallos?
 
-por que el principal requerimiento es entregar a los usuarios experiencia de chat fluida y rápida para los usuarios. considero que es mas rapido consultar una cache en moria que ir a BD para cargar los ultimos mensajes enviamos por los usurios.
+- **Escalabilidad**:
+  - Implementar múltiples instancias de microservicios y SignalR, balanceadas mediante un balanceador de carga.
+  - Redis utilizado como backplane para SignalR facilita la sincronización entre servidores distribuidos.
+
+- **Tolerancia a fallos**:
+  - Usar Message Brokers como Kafka para asegurar la entrega y retransmisión de mensajes.
+  - Replicación y backup en bases de datos y Redis Cache para asegurar la disponibilidad y evitar pérdida de datos.
+
+### ¿Por qué Redis es la seleccionada en esta arquitectura?
+
+Porque el principal requerimiento es entregar a los usuarios una experiencia de chat fluida y rápida. Considero que es más rápido consultar una caché en memoria que ir a la base de datos para cargar los últimos mensajes enviados por los usuarios.
+
 
 
 ATRIBUTOS PRIORIZADOS DEL SISTEMA
