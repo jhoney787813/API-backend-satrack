@@ -1,4 +1,4 @@
-Pregunta 1
+# Pregunta 1
 
 Diseñe un sistema de mensajería en tiempo real para una
 aplicación de chat. El sistema debe soportar la entrega de
@@ -7,13 +7,13 @@ la arquitectura, los componentes clave (como servidores de
 mensajería, bases de datos, etc.), y cómo manejaría la
 escalabilidad y la tolerancia a fallos.
 
-R/=Propongo un diseño de un sistema de mensajería en tiempo real para una aplicación de chat, aplicando parte de los conceptos de la metodología WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y de los usuarios.
+**R/=** Propongo un diseño de un sistema de mensajería en tiempo real para una aplicación de chat, aplicando parte de los conceptos de la metodología WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y de los usuarios.
 
-¿Por qué necesitamos un sistema de mensajería en tiempo real para una aplicación de chat?
+**¿Por qué necesitamos un sistema de mensajería en tiempo real para una aplicación de chat?**
 
 Porque permitir una comunicación instantánea entre usuarios mejora la experiencia, aumenta la interactividad y es fundamental para cualquier aplicación moderna de chat que busque mantenerse competitiva y relevante.
 
-¿Qué componentes necesitamos para un sistema de mensajería en tiempo real?
+**¿Qué componentes necesitamos para un sistema de mensajería en tiempo real?**
 
 Servidores de mensajería en tiempo real (SignalR): 
 
@@ -44,7 +44,7 @@ Monitoreo y alertas:
     Para asegurar la disponibilidad y el rendimiento del sistema.
 
 
-¿Qué opciones tenemos para los servidores de mensajería en tiempo real y cuál es la más adecuada?
+**¿Qué opciones tenemos para los servidores de mensajería en tiempo real y cuál es la más adecuada?**
 
 SignalR vs WebSockets Puro vs Servicios de Terceros (Pusher, PubNub)
 
@@ -63,12 +63,12 @@ Servicios de Terceros (Pusher, PubNub):
 
 Simplifican la implementación con SDKs y servicios administrados, pero pueden ser costosos y limitar el control.
 
-¿Cuál es la más adecuada?
+**¿Cuál es la más adecuada?**
 
 SignalR es la elección ideal por su integración nativa con ASP.NET Core, soporte para escalabilidad y manejo sencillo de múltiples transportes en caso de que WebSockets no esté disponible.
 
 
-¿Qué opciones existen para gestionar los mensajes y cuál es la más adecuada?
+**¿Qué opciones existen para gestionar los mensajes y cuál es la más adecuada?**
 
 RabbitMQ vs Kafka
 
@@ -84,12 +84,12 @@ Kafka:
     
     Ideal para aplicaciones con un alto volumen de tráfico y la necesidad de procesamiento de eventos en tiempo real.
     
-¿Cuál es la más adecuada?
+**¿Cuál es la más adecuada?**
 
 Kafka es más adecuado para una aplicación de mensajería en tiempo real que requiere alta escalabilidad y capacidad para manejar grandes volúmenes de mensajes simultáneamente debido a su costo de implementación ya que al ser opensource se puede tener un servicio propio y administrable en una red interna y externa.
 
 
-¿Qué opciones de almacenamiento existen para mensajes y cuál es la más adecuada?
+**¿Qué opciones de almacenamiento existen para mensajes y cuál es la más adecuada?**
 
 Bases de Datos NoSQL (MongoDB, CosmosDB) vs SQL (PostgreSQL, SQL Server, MySQL)
 
@@ -105,7 +105,7 @@ SQL (PostgreSQL, SQL Server,MySQL):
 
     Mayor integridad referencial, pero con menos flexibilidad y escalabilidad para datos no estructurados.
 
-¿Cuál es la más adecuada?
+**¿Cuál es la más adecuada?**
 
 Para nuestro caso debido a la alta concurrencia y velocidad con que se debe proveer la información la alternativa mas eficiente para este caso  seria NoSQL, debido a su capacidad para manejar grandes volúmenes de mensajes y flexibilidad en la estructura de datos.
 
@@ -123,7 +123,7 @@ Tolerancia a fallos
     
     Replicación y backup en bases de datos y Redis Cache para asegurar la disponibilidad y evitar pérdida de datos.
 
-¿Por qué Redis es la seleccionada en esta arquitectura?
+**¿Por qué Redis es la seleccionada en esta arquitectura?**
 
 por que el principal requerimiento es entregar a los usuarios experiencia de chat fluida y rápida para los usuarios. considero que es mas rapido consultar una cache en moria que ir a BD para cargar los ultimos mensajes enviamos por los usurios.
 
@@ -172,7 +172,7 @@ FLUJO DE COMUNICACIÓN
 
 -----------------------------------------------------------------------
 
-Pregunta 2
+# Pregunta 2
 
 Explique cómo implementaría un sistema de control de
 versiones de API para una aplicación que está en producción
@@ -180,7 +180,7 @@ con múltiples clientes. Incluya detalles sobre la gestión de la
 depreciación de versiones antiguas y la migración de los
 clientes a nuevas versiones de la API
 
-R/= Como no se me pide implementar esta solución en una tecnologia especifica, para dar cumplimiento a este requemiento quiero proponer una altertaiva que hemos utilizado en satrack para este proposito, normalmente la he implementando con .NET
+**R/=** Como no se me pide implementar esta solución en una tecnologia especifica, para dar cumplimiento a este requemiento quiero proponer una altertaiva que hemos utilizado en satrack para este proposito, normalmente la he implementando con .NET
 
 Supogamos que la aplicación esta en producción y cuenta con unos endpoints actuales que no puede ser modificados para no afectar los clientes que consumen nuestras apis en sus contratos. lo que hacemos en configurar nos una ruta alternativa  en nuestro swagger para controlar el ruteo a nuestros endpoints nuevos.
 
@@ -209,7 +209,7 @@ Hoy en satrack hemos implementado este mecanisco de redirección sobre los recur
 
 
 -----------------------------------------------------------------------
-Pregunta 3
+# Pregunta 3
 
 Diseñe una solución de almacenamiento de datos para una
 plataforma de streaming de video. Discuta las opciones de
@@ -221,7 +221,7 @@ Network) y alta disponibilidad.
 
 
 
-R/= propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de la metodologia WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y los usuarios.
+**R/=** propongo un diseño de plataforma de streaming de video, aplicando parte de los conceptos de la metodologia WHY DRIVEN DESIGN para abordar los requisitos y tomar decisiones informadas en cada paso. Esta metodología se centra en entender el "por qué" detrás de cada decisión para garantizar que el diseño satisfaga las necesidades del negocio y los usuarios.
 
 ¿Por qué necesitamos una solución de almacenamiento para una plataforma de streaming de video?
   por que tener la capacidad de no solo almancenar si no gestionar la estructura de datos de manera eficiente proporciona una experiencia de streaming fluida y de alta calidad para el usuario.
